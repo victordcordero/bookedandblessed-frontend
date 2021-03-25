@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import Card from "./Card"
-import Job from "./Job"
+import Job from "./CreateJob"
 function Body() {
 
 

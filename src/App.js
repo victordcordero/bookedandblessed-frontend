@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react"
 import './App.css';
 import Body from "./Components/Body"
-import Navbar from "./Components/Navbar";
-import Button from './Components/Button';
 import Header from './Components/Header'
 import {
   BrowserRouter as Router,
@@ -11,16 +9,13 @@ import {
   Link,
   NavLink
 } from "react-router-dom";
-import Job from "./Components/Job";
+import CreateJob from "./Components/CreateJob";
 import Invoice from "./Components/Invoice";
 import Expense from "./Components/Expense";
-import Expenses from "./Components/Expenses";
-import ExpensesArray from "./Components/ExpensesArray";
 import Invoices from "./Components/Invoices";
 
 function App() {
   const [user, setUser] = useState(null)
-  const [currentUser, setcurrentUser] = useState([])
   const [invoices, setInvoices] = useState([])
   const [currentJob, setCurrentJob] = useState(0)
   const [lastJob, setLastJob] = useState([])
@@ -34,6 +29,8 @@ function App() {
 })
 
 
+console.log(user)
+
 useEffect(() => {
   fetch('http://localhost:3000/users/1')
   .then(response => response.json())
@@ -42,6 +39,7 @@ useEffect(() => {
     setInvoices(data[0].invoices)
   })
 }, [])
+
 
 
 function handleUpdateClient(updatedClient) {
@@ -57,25 +55,19 @@ function handleUpdateClient(updatedClient) {
   } 
   
   return (
-    <div>
+    <div className="App">
       <Header user={user}></Header>
         <Switch>
-          <Route path="/job">
-            <Job currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob}></Job>
+          <Route exact path="/CreateJob">
+            <CreateJob currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob}></CreateJob>
           </Route>
-            <Route path="/invoice">
+            <Route exact path="/invoice">
             <Invoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData}></Invoice>
           </Route>
-          <Route path="/Expense">
-            <Expense currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} ></Expense>
+          <Route exact path="/Expense">
+            <Expense currentJob={currentJob} lastJob={lastJob}></Expense>
           </Route>
-          <Route path="/Expenses">
-            <Expenses currentUser={currentUser}></Expenses>
-          </Route>
-          <Route path="/ExpensesArray">
-            <ExpensesArray currentUser={currentUser}></ExpensesArray>
-          </Route>
-          <Route path="/Invoices">
+          <Route exact path="/Invoices">
             { user && <Invoices user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient}></Invoices> }
             </Route>
         </Switch>

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import NumberFormat from 'react-number-format';
 import { useHistory } from "react-router-dom";
 
-function Expense({invoiceData, currentJob, lastJob}) {
+function Expense({currentJob, lastJob}) {
     const history = useHistory()
 
  const [inputField, setinputField] = useState([{
@@ -45,7 +45,7 @@ const handleChangeInput = (id, event) => {
                    console.log(data)
                 })},       
             )
-            history.push('/invoices')
+           
     }
 
     function handleAddField(event) {

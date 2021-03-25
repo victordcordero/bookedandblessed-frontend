@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import Expenses from './Expenses'
 import Invoice from './Invoice'
 import Invoices from './Invoices'
 import NumberFormat from 'react-number-format';
@@ -16,7 +15,6 @@ let expenseTotal = amounts.reduce(function(a, b) {
 
 tax = (invoices.amount * .30)
 setTax(tax)
-
 
 function caclulateTax() {
 

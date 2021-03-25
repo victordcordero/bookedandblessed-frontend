@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
 import Invoice from "./Invoice"
 
-function Job({currentJob, user, lastJob, setCurrentJob, setLastJob}) {
+function CreateJob({currentJob, user, lastJob, setCurrentJob, setLastJob}) {
 
 
 const [job, setJob] = useState([])
@@ -50,4 +50,4 @@ useEffect(() => {
     )
 }
 
-export default Job
+export default CreateJob
