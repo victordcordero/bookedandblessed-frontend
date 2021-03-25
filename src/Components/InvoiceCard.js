@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
-import Invoice from './Invoice'
-import Invoices from './Invoices'
 import NumberFormat from 'react-number-format';
 
-function InvoiceArray({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient}) {
+function InvoiceCard({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient}) {
 const [updatedClient, setUpdatedClient] = useState("")
-console.log(invoices)
+
 let amount = invoices.expenses.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
 let amounts = invoices.expenses.map((expense) => expense.amount)
@@ -80,4 +78,4 @@ function deleteInvoice() {
     )
 }
 
-export default InvoiceArray
+export default InvoiceCard

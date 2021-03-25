@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import InvoiceArray from "./InvoiceArray"
+import InvoiceCard from "./InvoiceCard"
 import Tax from "./Tax"
 
-function Invoices({user, setInvoices, invoices, onUpdateClient}) {
+function InvoiceContainer({user, setInvoices, invoices, onUpdateClient}) {
 const [tax, setTax] = useState(0)
 const [taxArray, setTaxArray] = useState([])
 const [updatedInvoices, setUpdatedInvoices] = useState("")
@@ -22,7 +22,7 @@ function deleteInvoicefromArray(deleteInvoice) {
 }
 
 
-let sendInvoices = invoices.map((invoices) => <InvoiceArray invoices={invoices} deleteInvoicefromArray={deleteInvoicefromArray} key={invoices.id} user={user} tax={tax} setTax={setTax} setTaxArray={setTaxArray} taxArray={taxArray} onUpdateClient={onUpdateClient}/>)
+let sendInvoices = invoices.map((invoices) => <InvoiceCard invoices={invoices} deleteInvoicefromArray={deleteInvoicefromArray} key={invoices.id} user={user} tax={tax} setTax={setTax} setTaxArray={setTaxArray} taxArray={taxArray} onUpdateClient={onUpdateClient}/>)
  
 
 
@@ -36,4 +36,4 @@ let sendInvoices = invoices.map((invoices) => <InvoiceArray invoices={invoices} 
     )
 }
 
-export default Invoices
+export default InvoiceContainer

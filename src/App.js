@@ -10,9 +10,9 @@ import {
   NavLink
 } from "react-router-dom";
 import CreateJob from "./Components/CreateJob";
-import Invoice from "./Components/Invoice";
-import Expense from "./Components/Expense";
-import Invoices from "./Components/Invoices";
+import CreateInvoice from "./Components/CreateInvoice";
+import CreateExpense from "./Components/CreateExpense";
+import InvoiceContainer from "./Components/InvoiceContainer";
 
 function App() {
   const [user, setUser] = useState(null)
@@ -37,9 +37,9 @@ useEffect(() => {
   .then(data => {
     setUser(data[0])
     setInvoices(data[0].invoices)
+    console.log(data[0].invoices)
   })
 }, [])
-
 
 
 function handleUpdateClient(updatedClient) {
@@ -61,14 +61,14 @@ function handleUpdateClient(updatedClient) {
           <Route exact path="/CreateJob">
             <CreateJob currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob}></CreateJob>
           </Route>
-            <Route exact path="/invoice">
-            <Invoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData}></Invoice>
+            <Route exact path="/CreateInvoice">
+            <CreateInvoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData}></CreateInvoice>
           </Route>
-          <Route exact path="/Expense">
-            <Expense currentJob={currentJob} lastJob={lastJob}></Expense>
+          <Route exact path="/CreateExpense">
+            <CreateExpense currentJob={currentJob} lastJob={lastJob}></CreateExpense>
           </Route>
-          <Route exact path="/Invoices">
-            { user && <Invoices user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient}></Invoices> }
+          <Route exact path="/InvoiceContainer">
+            { user && <InvoiceContainer user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient}></InvoiceContainer> }
             </Route>
         </Switch>
     

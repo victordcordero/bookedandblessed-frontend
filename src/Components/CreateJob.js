@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-import Invoice from "./Invoice"
+import Invoice from "./CreateInvoice"
 
 function CreateJob({currentJob, user, lastJob, setCurrentJob, setLastJob}) {
 

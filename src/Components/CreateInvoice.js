@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 
-function Invoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
+function CreateInvoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
 
     const history = useHistory()
     
@@ -19,7 +19,7 @@ function Invoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
         })
         .then(response => response.json())
         .then(data => {
-            history.push('/expense')
+            history.push('/CreateExpense')
         })
         
         }
@@ -46,4 +46,4 @@ function Invoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
     )
 }
 
-export default Invoice
+export default CreateInvoice

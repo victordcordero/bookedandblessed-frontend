@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import NumberFormat from 'react-number-format';
 import { useHistory } from "react-router-dom";
 
-function Expense({currentJob, lastJob}) {
+function CreateExpense({currentJob, lastJob}) {
     const history = useHistory()
 
  const [inputField, setinputField] = useState([{
@@ -76,17 +76,5 @@ const handleChangeInput = (id, event) => {
     )
 }
 
-export default Expense
+export default CreateExpense
 
-{/* <div>
-<h1>Expense</h1>
-<form onSubmit={handleSubmit}>
-{ inputField.map((inputField, index) =>
-<div key={index}>
-    <input type="text" name="amount" value={inputField.amount} onChange={event => handleChangeInput(index, event)}></input>
-    <button onClick={() => handleAddField()}>Add Field</button>
-    <button onClick={() => handleRemoveField(index)}>Remove Field</button>
-</div>)}
-<button type="submit" >Submit</button>
-</form>
-</div> */}
