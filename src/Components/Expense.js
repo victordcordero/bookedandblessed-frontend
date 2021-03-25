@@ -1,28 +1,38 @@
 import React, {useState} from 'react'
+import { v4 as uuidv4 } from 'uuid';
+import NumberFormat from 'react-number-format';
+import { useHistory } from "react-router-dom";
 
 function Expense({invoiceData, currentJob, lastJob}) {
-console.log(lastJob.id)
+    const history = useHistory()
+
  const [inputField, setinputField] = useState([{
+    id: uuidv4(),
     amount:"", 
     job_number: currentJob,
     invoice_id: lastJob.id,
 }])
 
 const [expenseID, setExpenseID] = useState(0)
+const [inputComponent, setInputComponent] = useState([])
+const NumberFormat = require('react-number-format');
+const handleChangeInput = (id, event) => {
+
+    const newInputFields = inputField.map(i => {
+      if(id === i.id) {
+        i[event.target.name] = event.target.value
+      }
+      return i;
+    })
     
-    function handleChangeInput(index, event) {
-        const values = [...inputField]; values[index][event.target.name] = event.target.value
-        setinputField(values)
-    }
+    setinputField(newInputFields);
+  }
 
     function handleSubmit(e) {
-        console.log(inputField)
-        
         e.preventDefault()
         inputField.job_number = currentJob
-        console.log(inputField)
         inputField.forEach(element =>
-           { console.log(element)
+           { 
         fetch(`http://localhost:3000/expenses`, {
                     method: "POST",
                     headers: {
@@ -35,32 +45,48 @@ const [expenseID, setExpenseID] = useState(0)
                    console.log(data)
                 })},       
             )
+            history.push('/invoices')
     }
 
-    function handleAddField() {
-        setinputField([...inputField, {amount: "", job_number: currentJob, 
-        invoice_id:lastJob.id}])
+    function handleAddField(event) {
+        event.stopPropagation()
+        setinputField([...inputField, { id: uuidv4(), amount: "", job_number: currentJob, 
+        invoice_id: lastJob.id}])
     }
 
-    function handleRemoveField(index) {
+    function handleRemoveField(id) {
         const values = [...inputField];
-        values.splice(index, 1)
+        values.splice(values.findIndex(value => value.id === id), 1);
         setinputField(values)
     }
+
     return (
         <div>
             <h1>Expense</h1>
           <form onSubmit={handleSubmit}>
-            { inputField.map((inputField, index) =>
-            <div key={index}>
-                <input type="text" name="amount" value={inputField.amount} onChange={event => handleChangeInput(index, event)}></input>
-                <button type="submit" onClick={() => handleAddField()}>Add Field</button>
-                <button type="submit" onClick={() => handleRemoveField(index)}>Remove Field</button>
-            </div>)}
-            <button type="submit" onClick={handleSubmit}>Submit</button>
+            { inputField.map((inputField => (
+            <div key={inputField.id}>
+                <input type="text" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}></input>
+            </div>)))}
+            <button type="submit">Submit</button>
           </form>
+            <button onClick={handleAddField}>Add Field</button>
+            <button disable={inputField.length === 1} onClick={() => handleRemoveField(inputField.id)}>Remove Field</button>
         </div>
     )
 }
 
 export default Expense
+
+{/* <div>
+<h1>Expense</h1>
+<form onSubmit={handleSubmit}>
+{ inputField.map((inputField, index) =>
+<div key={index}>
+    <input type="text" name="amount" value={inputField.amount} onChange={event => handleChangeInput(index, event)}></input>
+    <button onClick={() => handleAddField()}>Add Field</button>
+    <button onClick={() => handleRemoveField(index)}>Remove Field</button>
+</div>)}
+<button type="submit" >Submit</button>
+</form>
+</div> */}

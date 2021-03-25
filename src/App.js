@@ -19,7 +19,7 @@ import ExpensesArray from "./Components/ExpensesArray";
 import Invoices from "./Components/Invoices";
 
 function App() {
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
   const [currentUser, setcurrentUser] = useState([])
   const [invoices, setInvoices] = useState([])
   const [currentJob, setCurrentJob] = useState(0)
@@ -34,23 +34,28 @@ function App() {
 })
 
 
-  useEffect(() => {
-    fetch('http://localhost:3000/invoices')
-    .then(response => response.json())
-    .then(data => {
-      setInvoices(data)
-    })
-}, [])
-
-
 useEffect(() => {
   fetch('http://localhost:3000/users/1')
   .then(response => response.json())
   .then(data => {
-    setUser(data)
+    setUser(data[0])
+    setInvoices(data[0].invoices)
   })
 }, [])
 
+
+function handleUpdateClient(updatedClient) {
+  console.log(updatedClient.client)
+  const updatedClientArray = invoices.map((invoice) => {
+    if(invoice.id === updatedClient.id) {
+      return updatedClient; 
+    } else {
+      return invoice;
+    }
+  });
+  setInvoices(updatedClientArray);
+  } 
+  
   return (
     <div>
       <Header user={user}></Header>
@@ -71,8 +76,8 @@ useEffect(() => {
             <ExpensesArray currentUser={currentUser}></ExpensesArray>
           </Route>
           <Route path="/Invoices">
-            <Invoices user={user} invoices={invoices}></Invoices>
-          </Route>
+            { user && <Invoices user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient}></Invoices> }
+            </Route>
         </Switch>
     
         </div>

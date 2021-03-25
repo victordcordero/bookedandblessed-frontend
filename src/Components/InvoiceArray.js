@@ -2,36 +2,61 @@ import React, {useState} from 'react'
 import Expenses from './Expenses'
 import Invoice from './Invoice'
 import Invoices from './Invoices'
+import NumberFormat from 'react-number-format';
 
+function InvoiceArray({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient}) {
+const [updatedClient, setUpdatedClient] = useState("")
+console.log(invoices)
+let amount = invoices.expenses.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
-function InvoiceArray({invoice, user, tax, setTax, taxArray, setTaxArray}) {
-const [showTax, setShowTax] = useState(false)
-
-let amount = invoice.expenses.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
-let amounts = invoice.expenses.map((expense) => expense.amount)
+let amounts = invoices.expenses.map((expense) => expense.amount)
 let expenseTotal = amounts.reduce(function(a, b) {
     return a + b
 }, 0)
 
-tax = (invoice.amount * .30)
+tax = (invoices.amount * .30)
 setTax(tax)
 
-console.log(showTax)
+
 function caclulateTax() {
-    if (showTax === false) {
+
     fetch(`http://localhost:3000/taxes`, {
         method: "POST",
         headers: {
             "Content-Type" : 'application/json'
         },
-        body: JSON.stringify({amount: tax, job_number: invoice.job_number, user_id: user.id})
+        body: JSON.stringify({amount: tax, job_number: invoices.job_number, user_id: user.id})
     })
     .then(response => response.json())
     .then(data => {
         setTaxArray([...taxArray, data])
     })
      
-}}
+}
+
+
+function handleNameFormSubmit(e) {
+e.preventDefault()
+    fetch(`http://localhost:3000/invoices/${invoices.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify({client: updatedClient})
+    })
+    .then(response => response.json())
+    .then(updatedClientName => {
+        onUpdateClient(updatedClientName)
+    })
+}
+
+function deleteInvoice() {
+    fetch(`http://localhost:3000/invoices/${invoices.id}`, {
+        method: "DELETE" })
+        let deleteInvoice = invoices.id
+        deleteInvoicefromArray(deleteInvoice)
+}
+
     return (
         <div>
             <br></br>
@@ -39,16 +64,20 @@ function caclulateTax() {
             <h2>Invoice Template</h2>
             <p>From: {user.name}</p>
             <p>Email: {user.email}</p>
-            <p>Job Number: {invoice.job_number}</p>
-            <p>Client: {invoice.client}</p>
-            <p>Dates Worked: {invoice.days_worked}</p>
-            <p>Rate: {invoice.rate} dollars</p>
+            <p>Job Number: {invoices.job_number}</p>
+            <p>Client: {invoices.client}</p>
+            <form onSubmit={handleNameFormSubmit}>
+                <input value={updatedClient} onChange={(e) => setUpdatedClient(e.target.value)}></input>
+                <button type="submit" >Update</button>
+            </form>
+            <p>Dates Worked: {invoices.days_worked}</p>
+            <p>Rate: {invoices.rate} dollars</p>
             <p><ul>{amount}</ul></p>
-            <p> Invoice Total: {invoice.amount} dollars</p>
+            <p> Invoice Total: {invoices.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
-            <p>Grand Total: {invoice.amount + expenseTotal} dollars</p>
-            <button onClick={caclulateTax}>Send Tax</button>
+            <p>Grand Total: {invoices.amount + expenseTotal} dollars</p>
             <p>Tax: {tax} dollars</p>
+            <button onClick={deleteInvoice}>Delete Invoice</button>
         </div>
     )
 }

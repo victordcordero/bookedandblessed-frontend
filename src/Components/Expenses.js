@@ -3,6 +3,7 @@ import ExpensesArray from "./ExpensesArray"
 
 function Expenses({currentUser}) {
     const [expenses, setExpenses] = useState([])
+    
 
     useEffect(() => {
         fetch(`http://localhost:3000/users/${currentUser}`)

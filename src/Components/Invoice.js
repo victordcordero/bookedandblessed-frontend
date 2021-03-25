@@ -7,7 +7,6 @@ function Invoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
     
     function handleFormSubmit(e) {
         e.preventDefault()
-        console.log(invoiceData)
         invoiceData.amount = invoiceData.rate * invoiceData.days_worked
         invoiceData.job_id = lastJob.id
         invoiceData.job_number = currentJob
@@ -20,7 +19,6 @@ function Invoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             history.push('/expense')
         })
         
