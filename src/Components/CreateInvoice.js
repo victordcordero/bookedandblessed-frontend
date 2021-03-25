@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useHistory } from "react-router-dom";
 
-function CreateInvoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
+function CreateInvoice({currentJob, lastJob, setInvoiceData, invoiceData, setInvoices, invoices, setCurrentInvoice, currentInvoice}) {
 
     const history = useHistory()
     
@@ -19,6 +19,9 @@ function CreateInvoice({currentJob, lastJob, setInvoiceData, invoiceData}) {
         })
         .then(response => response.json())
         .then(data => {
+            setInvoices([...invoices, data])
+            
+            setCurrentInvoice(data)
             history.push('/CreateExpense')
         })
         

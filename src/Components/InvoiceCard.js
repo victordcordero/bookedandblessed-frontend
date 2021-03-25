@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
 import NumberFormat from 'react-number-format';
 
-function InvoiceCard({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient}) {
+function InvoiceCard({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient, expense}) {
 const [updatedClient, setUpdatedClient] = useState("")
 
-let amount = invoices.expenses.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
+let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
-let amounts = invoices.expenses.map((expense) => expense.amount)
-let expenseTotal = amounts.reduce(function(a, b) {
+let expenseAdd = expense.map((expense) => expense.amount)
+
+let expenseTotal = expenseAdd.reduce(function(a, b) {
     return a + b
 }, 0)
 
@@ -58,6 +59,7 @@ function deleteInvoice() {
             <br></br>
             <br></br>
             <h2>Invoice Template</h2>
+            dede
             <p>From: {user.name}</p>
             <p>Email: {user.email}</p>
             <p>Job Number: {invoices.job_number}</p>
@@ -68,7 +70,7 @@ function deleteInvoice() {
             </form>
             <p>Dates Worked: {invoices.days_worked}</p>
             <p>Rate: {invoices.rate} dollars</p>
-            <p><ul>{amount}</ul></p>
+            <p><ul>{expenseList}</ul></p>
             <p> Invoice Total: {invoices.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
             <p>Grand Total: {invoices.amount + expenseTotal} dollars</p>

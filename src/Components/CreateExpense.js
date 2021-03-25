@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import NumberFormat from 'react-number-format';
 import { useHistory } from "react-router-dom";
 
-function CreateExpense({currentJob, lastJob}) {
+function CreateExpense({addExpenseToInvoice, currentJob, lastJob, expenses, setExpenses, setCurrentInvoice, currentInvoice, setNewExpense, newExpense}) {
     const history = useHistory()
 
  const [inputField, setinputField] = useState([{
@@ -14,7 +14,7 @@ function CreateExpense({currentJob, lastJob}) {
 }])
 
 const [expenseID, setExpenseID] = useState(0)
-const [inputComponent, setInputComponent] = useState([])
+const [inputComponent, setInputComponent] = useState({})
 const NumberFormat = require('react-number-format');
 const handleChangeInput = (id, event) => {
 
@@ -30,23 +30,24 @@ const handleChangeInput = (id, event) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        inputField.job_number = currentJob
-        inputField.forEach(element =>
-           { 
+        // inputField.job_number = currentJob
+        console.log(inputField)
         fetch(`http://localhost:3000/expenses`, {
                     method: "POST",
                     headers: {
                         "Content-Type" : 'application/json'
                     },
-                    body: JSON.stringify(element)
+                    body: JSON.stringify({expenses: inputField})
                 })
                 .then(response => response.json())
                 .then(data => {
-                   console.log(data)
-                })},       
-            )
-           
+                  // setNewExpense(data)
+                  addExpenseToInvoice(data, lastJob.id)
+                  // setCurrentInvoice( {...currentInvoice, expenses: [...currentInvoice.expenses, data] } )
+                  // history.push('/invoicecontainer')
+                })
     }
+
 
     function handleAddField(event) {
         event.stopPropagation()
