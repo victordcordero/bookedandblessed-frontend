@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, {useEffect, useState, PureComponent} from "react"
 import './App.css';
 import Body from "./Components/Body"
 import Header from './Components/Header'
@@ -14,10 +14,13 @@ import CreateInvoice from "./Components/CreateInvoice";
 import CreateExpense from "./Components/CreateExpense";
 import InvoiceContainer from "./Components/InvoiceContainer";
 import Tax from "./Components/TaxContainer";
+import InvoiceShowPage from "./Components/InvoiceShowPage"
+import jsPDF from 'jspdf'
 
 function App() {
   const [user, setUser] = useState(null)
   const [invoices, setInvoices] = useState([])
+  // const [singleInvoice, setSingleInvoice] = useState(0)
   const [jobs, setJobs] = useState([])
   const [expenses, setExpenses] = useState([])
   const [tax, setTax] = useState([])
@@ -25,6 +28,7 @@ function App() {
   const [currentJob, setCurrentJob] = useState(0)
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
+  // const [individualInvoice, setIndividualInvoice] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
     days_worked:"", 
@@ -33,6 +37,7 @@ function App() {
     job_number: "",
     amount: "",
 })
+
 
 function addExpenseToInvoice(newExpense, lastJob) {
   const newInvoices = invoices.map( invoice => {
@@ -64,8 +69,8 @@ useEffect(() => {
   })
 }, [])
 
-console.log(tax, "tax")
-console.log(invoices, "invoice")
+
+
 function handleUpdateClient(updatedClient) {
   console.log(updatedClient.client)
   const updatedClientArray = invoices.map((invoice) => {
@@ -96,6 +101,9 @@ function handleUpdateClient(updatedClient) {
             </Route>
             <Route exact path="/tax">
             <Tax tax={tax}></Tax> 
+            </Route>
+            <Route exact path="/InvoiceShowPage/:id">
+          <InvoiceShowPage /> 
             </Route>
         </Switch>
     

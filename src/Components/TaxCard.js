@@ -1,6 +1,8 @@
 import React from 'react'
+import ReactToPrint from "react-to-print";
 
 function TaxCard({tax}) {
+   
     return (
         <div>
             <ul>

@@ -1,8 +1,17 @@
 import React, {useState} from 'react'
 import NumberFormat from 'react-number-format';
 import InvoiceShowPage from './InvoiceShowPage'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    NavLink,
+    useParams
+  } from "react-router-dom";
 
-function InvoiceCard({invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
+
+function InvoiceCard({setSingleInvoice, invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
 const [taxAmount, setTaxAmount] = useState([])
 let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
@@ -12,6 +21,7 @@ let expenseAdd = expense.map((expense) => expense.amount)
 let expenseTotal = expenseAdd.reduce(function(a, b) {
     return a + b
 }, 0)
+
 
 // setTaxAmount(taxFromInvoice)
 function caclulateTax() {
@@ -60,12 +70,16 @@ function deleteInvoice() {
 //         </Route>
 // }
 
+// function clickSingleInvoice() {
+//     setSingleInvoice(invoices.id)
+// // }
+// onClick={clickSingleInvoice}
     return (
         <div>
+            <Link to={`/InvoiceShowPage/${invoices.id}`}>Click Me!</Link>
             <br></br>
             <br></br>
             <h2>Invoice Template</h2>
-            dede
             <p>From: {user.name}</p>
             <p>Email: {user.email}</p>
             <p>Job Number: {invoices.job_number}</p>
@@ -83,6 +97,7 @@ function deleteInvoice() {
             <button onClick={deleteInvoice}>Delete Invoice</button>
             <button onClick={caclulateTax}>Calculate Tax</button>
             {/* <button onClick={viewInvoice}>View Invoice</button> */}
+            
         </div>
     )
 }
