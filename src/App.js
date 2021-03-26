@@ -63,6 +63,7 @@ useEffect(() => {
   setJobs(data)
   })
 }, [])
+
 console.log(tax, "tax")
 console.log(invoices, "invoice")
 function handleUpdateClient(updatedClient) {

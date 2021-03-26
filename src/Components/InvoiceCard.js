@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import NumberFormat from 'react-number-format';
+import InvoiceShowPage from './InvoiceShowPage'
 
 function InvoiceCard({invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
@@ -31,7 +32,6 @@ function caclulateTax() {
     })
      
 }
-console.log(taxAmount)
 function handleNameFormSubmit(e) {
 e.preventDefault()
     fetch(`http://localhost:3000/invoices/${invoices.id}`, {
@@ -53,6 +53,12 @@ function deleteInvoice() {
         let deleteInvoice = invoices.id
         deleteInvoicefromArray(deleteInvoice)
 }
+
+// function viewInvoice() {
+//     <Route exact path='/invoiceshowpage/${invoice}'>
+//           <SongPage song={song}/>
+//         </Route>
+// }
 
     return (
         <div>
@@ -76,6 +82,7 @@ function deleteInvoice() {
             <p>Grand Total: {invoices.amount + expenseTotal} dollars</p>
             <button onClick={deleteInvoice}>Delete Invoice</button>
             <button onClick={caclulateTax}>Calculate Tax</button>
+            {/* <button onClick={viewInvoice}>View Invoice</button> */}
         </div>
     )
 }
