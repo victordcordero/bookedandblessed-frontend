@@ -13,7 +13,7 @@ function Header() {
             <ul className="navbar-nav ml-auto">
             <li className="nav-item active">
               <a className="nav-link" href="#">
-                <Link to="/job">job</Link>
+                <Link to="/createjob"> create job</Link>
               </a>
             </li>
             <li className="nav-item">
@@ -29,6 +29,10 @@ function Header() {
             <li className="nav-item">
               <a className="nav-link" href="#">
                 <Link to="/invoicecontainer">invoicecontainer</Link>
+              </a>
+              <li className="nav-item"></li>
+              <a className="nav-link" href="#">
+                <Link to="/tax">tax</Link>
               </a>
               </li>
           </ul>

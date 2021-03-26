@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import NumberFormat from 'react-number-format';
 
-function InvoiceCard({invoices, deleteInvoicefromArray, user, tax, setTax, taxArray, setTaxArray, onUpdateClient, expense}) {
+function InvoiceCard({invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
-
+const [taxAmount, setTaxAmount] = useState([])
 let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
 let expenseAdd = expense.map((expense) => expense.amount)
@@ -12,26 +12,26 @@ let expenseTotal = expenseAdd.reduce(function(a, b) {
     return a + b
 }, 0)
 
-tax = (invoices.amount * .30)
-setTax(tax)
-
+// setTaxAmount(taxFromInvoice)
 function caclulateTax() {
-
+    let taxFromInvoice = (invoices.amount * .30)
+    console.log(user.id)
+    console.log(invoices.job_number)
     fetch(`http://localhost:3000/taxes`, {
         method: "POST",
         headers: {
             "Content-Type" : 'application/json'
         },
-        body: JSON.stringify({amount: tax, job_number: invoices.job_number, user_id: user.id})
+        body: JSON.stringify({amount: taxFromInvoice, job_number: invoices.job_number, user_id: user.id})
     })
     .then(response => response.json())
     .then(data => {
-        setTaxArray([...taxArray, data])
+        setTaxAmount([...taxAmount, data])
+        setTax([...tax, data])
     })
      
 }
-
-
+console.log(taxAmount)
 function handleNameFormSubmit(e) {
 e.preventDefault()
     fetch(`http://localhost:3000/invoices/${invoices.id}`, {
@@ -74,8 +74,8 @@ function deleteInvoice() {
             <p> Invoice Total: {invoices.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
             <p>Grand Total: {invoices.amount + expenseTotal} dollars</p>
-            <p>Tax: {tax} dollars</p>
             <button onClick={deleteInvoice}>Delete Invoice</button>
+            <button onClick={caclulateTax}>Calculate Tax</button>
         </div>
     )
 }

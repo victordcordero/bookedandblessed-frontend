@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-import Invoice from "./CreateInvoice"
+import CreateInvoice from "./CreateInvoice"
 
-function CreateJob({currentJob, user, lastJob, setCurrentJob, setLastJob, setJobs, jobs}) {
-const [jobData, setJobData] = useState("")
+function CreateJob({currentJob, user, lastJob, setCurrentJob, setLastJob, jobs}) {
 const history = useHistory()
+
 
     function createJobNumber(e) {
         e.preventDefault()
@@ -12,7 +12,7 @@ const history = useHistory()
         const lastJob = jobs[jobs.length - 1]
         let updatedJob = lastJob.job_number + 1
         setCurrentJob(updatedJob)
-        console.log(updatedJob)
+        
         fetch(`http://localhost:3000/jobs`, {
             method: "POST",
             headers: {
@@ -23,6 +23,7 @@ const history = useHistory()
         .then(response => response.json())
         .then(data => {
             setLastJob(data)
+            console.log(data)
             history.push('/createinvoice')
         })
         }

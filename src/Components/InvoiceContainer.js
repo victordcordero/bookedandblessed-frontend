@@ -1,26 +1,17 @@
 import React, {useState, useEffect} from 'react'
 import InvoiceCard from "./InvoiceCard"
-import Tax from "./Tax"
+import Tax from "./TaxContainer"
 
-function InvoiceContainer({user, setInvoices, invoices, onUpdateClient, expenses, newExpense}) {
-const [tax, setTax] = useState(0)
-const [taxArray, setTaxArray] = useState([])
+function InvoiceContainer({user, setInvoices, invoices, onUpdateClient, expenses, newExpense, setTax, tax}) {
 const [updatedInvoices, setUpdatedInvoices] = useState("")
 const [newClientName, setNewClientName] = useState("")
-
-useEffect(() => {
-    fetch('http://localhost:3000/taxes')
-    .then(response => response.json())
-    .then(data => {
-        setTaxArray(data)
-    })
-}, [])
+console.log(tax)
 
 const newInvoices = invoices.map( invoice => {
     if ( invoice.id !== newExpense.invoice ) return invoice
     {return {...invoice, expenses: [ ...invoice.expenses, newExpense ]
   } }})
-//   setInvoices( newInvoices )
+
 
 function deleteInvoicefromArray(deleteInvoice) {
     let invoicesKeep = invoices.filter((invoice) => invoice.id !== deleteInvoice)
@@ -28,9 +19,8 @@ function deleteInvoicefromArray(deleteInvoice) {
 }
 
 
-let sendInvoices = invoices.map((invoices) => <InvoiceCard invoices={invoices} deleteInvoicefromArray={deleteInvoicefromArray} key={invoices.id} user={user} tax={tax} setTax={setTax} setTaxArray={setTaxArray} taxArray={taxArray} onUpdateClient={onUpdateClient} expense={invoices.expenses}/>)
+let sendInvoices = invoices.map((invoices) => <InvoiceCard invoices={invoices} deleteInvoicefromArray={deleteInvoicefromArray} key={invoices.id} user={user} tax={tax} setTax={setTax} onUpdateClient={onUpdateClient} expense={invoices.expenses} />)
  
-
 
 // console.log(taxArray)
 // console.log(singleTax)

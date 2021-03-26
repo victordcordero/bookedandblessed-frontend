@@ -41,10 +41,8 @@ const handleChangeInput = (id, event) => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                  // setNewExpense(data)
                   addExpenseToInvoice(data, lastJob.id)
-                  // setCurrentInvoice( {...currentInvoice, expenses: [...currentInvoice.expenses, data] } )
-                  // history.push('/invoicecontainer')
+                  console.log(data)
                 })
     }
 
