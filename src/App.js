@@ -55,6 +55,14 @@ useEffect(() => {
   })
 }, [])
 
+
+useEffect(() => {
+  fetch('http://localhost:3000/jobs')
+  .then(response => response.json())
+  .then(data => {
+  setJobs(data)
+  })
+}, [])
 console.log(tax, "tax")
 console.log(invoices, "invoice")
 function handleUpdateClient(updatedClient) {

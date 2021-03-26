@@ -4,7 +4,7 @@ import CreateInvoice from "./CreateInvoice"
 
 function CreateJob({currentJob, user, lastJob, setCurrentJob, setLastJob, jobs}) {
 const history = useHistory()
-
+console.log(jobs)
 
     function createJobNumber(e) {
         e.preventDefault()
@@ -28,12 +28,9 @@ const history = useHistory()
         })
         }
     }
-
     return (
   <div>
-            <form>
-            <input type="submit" value="Create a Job!" onClick={createJobNumber}></input>
-                </form>
+            <input type="submit" value="Create a Job!" onClick={createJobNumber}></input>  
     </div>
     )
 }

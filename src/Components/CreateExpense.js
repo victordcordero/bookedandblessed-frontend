@@ -30,7 +30,7 @@ const handleChangeInput = (id, event) => {
 
     function handleSubmit(e) {
         e.preventDefault()
-        // inputField.job_number = currentJob
+        inputField.job_number = currentJob
         console.log(inputField)
         fetch(`http://localhost:3000/expenses`, {
                     method: "POST",
