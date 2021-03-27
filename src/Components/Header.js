@@ -30,9 +30,25 @@ function Header() {
               <a className="nav-link" href="#">
                 <Link to="/invoicecontainer">invoicecontainer</Link>
               </a>
-              <li className="nav-item"></li>
+              </li>
+              <li className="nav-item">
               <a className="nav-link" href="#">
                 <Link to="/tax">tax</Link>
+              </a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="#">
+                <Link to="/login">login</Link>
+              </a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="#">
+                <Link to="/signup">signup</Link>
+              </a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="#">
+                <Link to="/signup">signup</Link>
               </a>
               </li>
           </ul>

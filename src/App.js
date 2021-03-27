@@ -15,6 +15,8 @@ import CreateExpense from "./Components/CreateExpense";
 import InvoiceContainer from "./Components/InvoiceContainer";
 import Tax from "./Components/TaxContainer";
 import InvoiceShowPage from "./Components/InvoiceShowPage"
+import Login from "./Components/Login"
+import SignUp from "./Components/SignUp"
 import jsPDF from 'jspdf'
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
   const [currentJob, setCurrentJob] = useState(0)
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
+  const [currentUser, setCurrentUser] = useState(null);
+
   // const [individualInvoice, setIndividualInvoice] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
@@ -86,7 +90,21 @@ function handleUpdateClient(updatedClient) {
   return (
     <div className="App">
       <Header user={user}></Header>
+      <main>
         <Switch>
+        <Route path="/signup">
+            <SignUp setCurrentUser={setCurrentUser} />
+          </Route>
+          <Route path="/login">
+            <Login setCurrentUser={setCurrentUser} />
+          </Route>
+          {/* <Route path="/profile">
+            {currentUser && (
+              <Profile
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            )} */}
           <Route exact path="/CreateJob">
             <CreateJob currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob} jobs={jobs} setJobs={setJobs}></CreateJob>
           </Route>
@@ -106,7 +124,7 @@ function handleUpdateClient(updatedClient) {
           <InvoiceShowPage /> 
             </Route>
         </Switch>
-    
+        </main>
         </div>
   )
 }
