@@ -16,6 +16,7 @@ function Login({ setCurrentUser }) {
     function handleSubmit(e) {
       e.preventDefault();
       // request => POST /login
+      console.log(formData)
       fetch("http://localhost:3000/login", {
         method: "POST",
         headers: {
@@ -32,17 +33,18 @@ function Login({ setCurrentUser }) {
             });
           }
         })
-        .then((data) => {
-          // set the user in state
-          setCurrentUser(data.user);
-          // save the token!
-          localStorage.setItem("token", data.token);
-          // redirect!
-          history.push("/");
-        })
-        .catch((data) => {
-          setErrors(data.errors);
-        });
+        .then((data) => console.log(data))
+        // .then((data) => {
+        //   // set the user in state
+        //   setCurrentUser(data.user);
+        //   // save the token!
+        //   localStorage.setItem("token", data.token);
+        //   // redirect!
+        //   history.push("/");
+        // })
+        // .catch((data) => {
+        //   setErrors(data.errors);
+        // });
     }
   
     return (

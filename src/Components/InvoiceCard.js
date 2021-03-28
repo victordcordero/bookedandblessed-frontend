@@ -14,7 +14,9 @@ import {
 function InvoiceCard({setSingleInvoice, invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
 const [taxAmount, setTaxAmount] = useState([])
+console.log(invoices)
 let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
+
 
 let expenseAdd = expense.map((expense) => expense.amount)
 
@@ -64,19 +66,9 @@ function deleteInvoice() {
         deleteInvoicefromArray(deleteInvoice)
 }
 
-// function viewInvoice() {
-//     <Route exact path='/invoiceshowpage/${invoice}'>
-//           <SongPage song={song}/>
-//         </Route>
-// }
-
-// function clickSingleInvoice() {
-//     setSingleInvoice(invoices.id)
-// // }
-// onClick={clickSingleInvoice}
     return (
         <div>
-            <Link to={`/InvoiceShowPage/${invoices.id}`}>Click Me!</Link>
+            <Link to={`/InvoiceShowPage/${invoices.id}`} >Click Me!</Link>
             <br></br>
             <br></br>
             <h2>Invoice Template</h2>
@@ -88,7 +80,7 @@ function deleteInvoice() {
                 <input value={updatedClient} onChange={(e) => setUpdatedClient(e.target.value)}></input>
                 <button type="submit" >Update</button>
             </form>
-            <p>Dates Worked: {invoices.days_worked}</p>
+            <p>Days Worked: {invoices.days_worked}</p>
             <p>Rate: {invoices.rate} dollars</p>
             <p><ul>{expenseList}</ul></p>
             <p> Invoice Total: {invoices.amount} dollars</p>

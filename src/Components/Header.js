@@ -6,53 +6,59 @@ import {
     Link,
     NavLink
   } from "react-router-dom";
-function Header() {
-
+function Header({currentUser}) {
+  
     return (
-        <div className="Header">
-            <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
+      <header>
+        <div> 
+          <a className="nav-link" href="#">
+          <Link to="/">Home</Link>
+              </a>
+          </div>
+          <div>
+            {currentUser ? (
+              <>
+              <a className="nav-link" href="#">
+                <Link to="/profile">profile</Link>
+              </a>
+      
               <a className="nav-link" href="#">
                 <Link to="/createjob"> create job</Link>
               </a>
-            </li>
-            <li className="nav-item">
+          
+            
               <a className="nav-link" href="#">
                 <Link to="/invoice">invoice</Link>
               </a>
-            </li>
-            <li className="nav-item">
+          
+            
               <a className="nav-link" href="#">
                 <Link to="/expense">expense</Link>
               </a>
-            </li>
-            <li className="nav-item">
+          
+            
               <a className="nav-link" href="#">
                 <Link to="/invoicecontainer">invoicecontainer</Link>
               </a>
-              </li>
-              <li className="nav-item">
+            
+              
               <a className="nav-link" href="#">
                 <Link to="/tax">tax</Link>
               </a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to="/login">login</Link>
-              </a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to="/signup">signup</Link>
-              </a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" href="#">
-                <Link to="/signup">signup</Link>
-              </a>
-              </li>
-          </ul>
-        </div>
+              
+              </>
+            ) : (  
+              <>  
+            <a className="nav-link" href="#">
+              <Link to="/login">login</Link>
+            </a>
+            <a className="nav-link" href="#">
+              <Link to="/signup">signup</Link>
+            </a>
+            </>
+            )}
+            </div>
+            </header>
     )
 }
 

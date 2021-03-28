@@ -17,6 +17,7 @@ import Tax from "./Components/TaxContainer";
 import InvoiceShowPage from "./Components/InvoiceShowPage"
 import Login from "./Components/Login"
 import SignUp from "./Components/SignUp"
+import Profile from "./Components/Profile"
 import jsPDF from 'jspdf'
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
   const [currentUser, setCurrentUser] = useState(null);
-
+  // const [singleInvoiceExpenses, setSingleInvoiceExpenses]= useState(null);
   // const [individualInvoice, setIndividualInvoice] = useState([]);
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
@@ -73,7 +74,15 @@ useEffect(() => {
   })
 }, [])
 
-
+useEffect(() => {
+  const token = true;
+  if(token) {
+  fetch('http://localhost:3000/me')
+  .then(response => response.json())
+  .then(data => {
+  setCurrentUser(data)
+  })
+}}, [])
 
 function handleUpdateClient(updatedClient) {
   console.log(updatedClient.client)
@@ -88,45 +97,53 @@ function handleUpdateClient(updatedClient) {
   } 
   
   return (
-    <div className="App">
-      <Header user={user}></Header>
+    <> 
+      <Header currentUser={currentUser}></Header> 
       <main>
         <Switch>
         <Route path="/signup">
             <SignUp setCurrentUser={setCurrentUser} />
           </Route>
           <Route path="/login">
-            <Login setCurrentUser={setCurrentUser} />
+          <Login setCurrentUser={setCurrentUser} />
           </Route>
-          {/* <Route path="/profile">
+          <Route path="/CreateJob">
+            <CreateJob currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob} jobs={jobs} setJobs={setJobs}></CreateJob>
+          </Route>
+            <Route path="/CreateInvoice">
+            <CreateInvoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData} setInvoices={setInvoices} invoices={invoices} setCurrentInvoice={setCurrentInvoice}></CreateInvoice>
+          </Route>
+          <Route path="/CreateExpense">
+            <CreateExpense currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
+          </Route>
+          <Route path="/InvoiceContainer">
+            { user && expenses && <InvoiceContainer newExpense={newExpense} user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient} expenses={expenses} tax={tax} setTax={setTax}></InvoiceContainer> }
+            </Route>
+            <Route path="/tax">
+            <Tax tax={tax}></Tax> 
+            </Route>
+            <Route path="/InvoiceShowPage/:id">
+          {user && <InvoiceShowPage user={user}/> }
+            </Route>
+            <Route path="/profile">
             {currentUser && (
               <Profile
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />
-            )} */}
-          <Route exact path="/CreateJob">
-            <CreateJob currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob} jobs={jobs} setJobs={setJobs}></CreateJob>
+            )}
           </Route>
-            <Route exact path="/CreateInvoice">
-            <CreateInvoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData} setInvoices={setInvoices} invoices={invoices} setCurrentInvoice={setCurrentInvoice}></CreateInvoice>
+          <Route path="/">
+            {currentUser ? (
+              <h1>Welcome, {currentUser.username}</h1>
+            ) : (
+              <h1>Please Login or Sign Up</h1>
+            )}
           </Route>
-          <Route exact path="/CreateExpense">
-            <CreateExpense currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
-          </Route>
-          <Route exact path="/InvoiceContainer">
-            { user && expenses && <InvoiceContainer newExpense={newExpense} user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient} expenses={expenses} tax={tax} setTax={setTax}></InvoiceContainer> }
-            </Route>
-            <Route exact path="/tax">
-            <Tax tax={tax}></Tax> 
-            </Route>
-            <Route exact path="/InvoiceShowPage/:id">
-          <InvoiceShowPage /> 
-            </Route>
         </Switch>
         </main>
-        </div>
+        </>
   )
 }
-
+// "react-app/jest"
 export default App;
