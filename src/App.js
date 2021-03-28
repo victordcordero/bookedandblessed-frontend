@@ -18,7 +18,10 @@ import InvoiceShowPage from "./Components/InvoiceShowPage"
 import Login from "./Components/Login"
 import SignUp from "./Components/SignUp"
 import Profile from "./Components/Profile"
+import WholePdf from "./Components/WholePdf"
 import jsPDF from 'jspdf'
+import Button from 'react-bootstrap/button'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -103,6 +106,9 @@ function handleUpdateClient(updatedClient) {
         <Switch>
         <Route path="/signup">
             <SignUp setCurrentUser={setCurrentUser} />
+          </Route>
+          <Route exact path="/pdf">
+         <WholePdf setCurrentUser={setCurrentUser}/>
           </Route>
           <Route path="/login">
           <Login setCurrentUser={setCurrentUser} />

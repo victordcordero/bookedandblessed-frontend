@@ -7,6 +7,7 @@ import {
     NavLink,
     useParams
   } from "react-router-dom";
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 
 function InvoiceShowPage({user}) {
   
@@ -43,6 +44,7 @@ function InvoiceShowPage({user}) {
             <p> Invoice Total: {singleInvoice.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
             <p>Grand Total: {singleInvoice.amount + expenseTotal} dollars</p>
+          
         </div>
     )
 }
