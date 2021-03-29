@@ -25,6 +25,8 @@ function WholePdf({currentUser}) {
   const {id} = useParams();
   const [printInvoicePDF, setPrintInvoicePDF] = useState(null)
   const [printExpensePDF, setPrintExpensePDF] = useState([])
+  const [singleExpensePDf, setSingleExpensePDF] = useState([1,2,3])
+  const [testingAgain, setTestingAgain] = useState([])
   const [testing, setTesting] = useState("working")
   const [printRate, setPrintRate] = useState("")
   const [printDayWorked, setPrintDayWorked] = useState("")
@@ -43,11 +45,21 @@ function WholePdf({currentUser}) {
       setPrintAmount(data[0].amount)
       setPrintJobNumber(data[0].job_number)
       setPrintExpensePDF(data[0].expenses)
+      // let tryingAgain = printExpensePDF.map((expense) => expense.amount)
+      setTestingAgain(printExpensePDF.map((expense) => expense.amount))
+      
+      // setSingleExpensePDF((printExpensePDF.expenses.map((expense) => expense)))
+      // console.log(singleExpensePDf)
     })
   }, [])
 
+  console.log(testingAgain)
+
+  // let tryingAgain = printExpensePDF.map((expense) => expense.amount)
+  // console.log(tryingAgain)
+  
   return (
-    currentUser && <div>
+    currentUser && testingAgain && <div>
       <PDFViewer>
         <PdfDocument currentUser={currentUser} testing={testing} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
       </PDFViewer>

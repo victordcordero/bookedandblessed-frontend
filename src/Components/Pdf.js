@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
       objectFit: 'cover',
   },
 });
-function PDF({currentUser, testing, printRate, printDayWorked, printClient, printAmount, printJobNumber }) {
+function PDF({currentUser, testing, printRate, printDayWorked, printClient, printAmount, printJobNumber, singleExpensePDf }) {
  
   return (
       <Document>
@@ -52,6 +52,9 @@ function PDF({currentUser, testing, printRate, printDayWorked, printClient, prin
           <View style={styles.section}>
             <Text>Client: {printAmount}</Text>
           </View>
+          {/* <View style={styles.section}>
+            <Text>Expenses:{testingAgain}</Text>
+          </View> */}
         </Page>
       </Document>
   
