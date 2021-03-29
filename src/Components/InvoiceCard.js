@@ -14,7 +14,7 @@ import {
 function InvoiceCard({setSingleInvoice, invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
 const [taxAmount, setTaxAmount] = useState([])
-console.log(invoices)
+
 let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
 
@@ -66,30 +66,28 @@ function deleteInvoice() {
 }
 
     return (
-        <div>
-            <Link to={`/InvoiceShowPage/${invoices.id}`} >Click Me!</Link>
-            <br></br>
-            <br></br>
-            <h2>Invoice Template</h2>
-            <p>From: {user.name}</p>
-            <p>Email: {user.email}</p>
-            <p>Job Number: {invoices.job_number}</p>
-            <p>Client: {invoices.client}</p>
-            <form onSubmit={handleNameFormSubmit}>
-                <input value={updatedClient} onChange={(e) => setUpdatedClient(e.target.value)}></input>
-                <button type="submit" >Update</button>
-            </form>
-            <p>Days Worked: {invoices.days_worked}</p>
-            <p>Rate: {invoices.rate} dollars</p>
-            <p><ul>{expenseList}</ul></p>
-            <p> Invoice Total: {invoices.amount} dollars</p>
-            <p>Expense Total: {expenseTotal} dollars</p>
-            <p>Grand Total: {invoices.amount + expenseTotal} dollars</p>
-            <button onClick={deleteInvoice}>Delete Invoice</button>
-            <button onClick={caclulateTax}>Calculate Tax</button>
-            {/* <button onClick={viewInvoice}>View Invoice</button> */}
-            
+        expense && <div className="container-fluid padding">
+  <div className="row padding">
+    <div className="col-md-4">
+      <div className="card">
+        <div className="card-body">
+          <h4 className="card-title">Invoice Template: {invoices.job_number}</h4>
+          <p className="card-text">From: {user.name}</p>
+          <p className="card-text">Email: {user.email}</p>
+          <p className="card-text">Job Number: {invoices.job_number}</p>
+          <p className="card-text">Client: {invoices.client}</p>
+          <p className="card-text">Days Worked: {invoices.days_worked}</p>
+          <p className="card-text">Rate: {invoices.rate} dollars</p>
+          <p className="card-text"><ul>{expenseList}</ul></p>
+          <p className="card-text">Grand Total: {invoices.amount + expenseTotal} dollars</p>
+          <button className="btn btn-outline-secondary" onClick={deleteInvoice}>Delete</button>
+          <Link className="btn btn-outline-secondary" to={`/InvoiceShowPage/${invoices.id}`} >View</Link>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
     )
 }
 

@@ -10,7 +10,7 @@ function CreateExpense({addExpenseToInvoice, currentJob, lastJob, expenses, setE
     id: uuidv4(),
     amount:"", 
     job_number: currentJob,
-    invoice_id: lastJob.id,
+    invoice_id: currentInvoice.id,
 }])
 
 const [expenseID, setExpenseID] = useState(0)
@@ -41,8 +41,8 @@ const handleChangeInput = (id, event) => {
                 })
                 .then(response => response.json())
                 .then(data => {
-                  addExpenseToInvoice(data, lastJob.id)
-                  console.log(data)
+                  addExpenseToInvoice(data, currentInvoice.id)
+                  history.push('/invoicecontainer')
                 })
     }
 
@@ -50,7 +50,7 @@ const handleChangeInput = (id, event) => {
     function handleAddField(event) {
         event.stopPropagation()
         setinputField([...inputField, { id: uuidv4(), amount: "", job_number: currentJob, 
-        invoice_id: lastJob.id}])
+        invoice_id: currentInvoice.id}])
     }
 
     function handleRemoveField(id) {
@@ -70,7 +70,7 @@ const handleChangeInput = (id, event) => {
             <button type="submit">Submit</button>
           </form>
             <button onClick={handleAddField}>Add Field</button>
-            <button disable={inputField.length === 1} onClick={() => handleRemoveField(inputField.id)}>Remove Field</button>
+            <button onClick={() => handleRemoveField(inputField.id)}>Remove Field</button>
         </div>
     )
 }

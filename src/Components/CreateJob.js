@@ -23,7 +23,6 @@ console.log(jobs)
         .then(response => response.json())
         .then(data => {
             setLastJob(data)
-            console.log(data)
             history.push('/createinvoice')
         })
         }

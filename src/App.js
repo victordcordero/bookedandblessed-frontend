@@ -27,7 +27,6 @@ import Button from 'react-bootstrap/button'
 function App() {
   const [user, setUser] = useState(null)
   const [invoices, setInvoices] = useState([])
-  // const [singleInvoice, setSingleInvoice] = useState(0)
   const [jobs, setJobs] = useState([])
   const [expenses, setExpenses] = useState([])
   const [tax, setTax] = useState([])
@@ -36,8 +35,7 @@ function App() {
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
   const [currentUser, setCurrentUser] = useState(null);
-  // const [singleInvoiceExpenses, setSingleInvoiceExpenses]= useState(null);
-  // const [individualInvoice, setIndividualInvoice] = useState([]);
+
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
     days_worked:"", 
@@ -54,6 +52,8 @@ function addExpenseToInvoice(newExpense, lastJob) {
     {return {...invoice, expenses: [ ...invoice.expenses, ...newExpense ]
   } }})
   setInvoices(newInvoices)
+  console.log(invoices)
+  console.log(newInvoices)
 }
 
 
