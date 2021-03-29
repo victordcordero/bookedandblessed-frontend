@@ -9,8 +9,8 @@ import {
 function Header({currentUser}) {
   
     return (
-      <header>
-        <div> 
+      <header class="navbar navbar-main navbar-expand-lg navbar-dark" id="navbar-main">
+        <div class="container"> 
           <a className="nav-link" href="#">
           <Link to="/">Home</Link>
               </a>
