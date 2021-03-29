@@ -8,12 +8,21 @@ import {
   PDFDownloadLink,
   PDFViewer,
 } from "@react-pdf/renderer";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  NavLink,
+  useParams
+} from "react-router-dom";
 import PdfDocument from './Pdf'
 
 // Create styles
 
 // Create Document Component
 function WholePdf({currentUser}) {
+  const {id} = useParams();
   const [printInvoicePDF, setPrintInvoicePDF] = useState(null)
   const [printExpensePDF, setPrintExpensePDF] = useState([])
   const [testing, setTesting] = useState("working")
@@ -24,7 +33,7 @@ function WholePdf({currentUser}) {
   const [printJobNumber, setPrintJobNumber] = useState("")
 
   useEffect(() => {
-    fetch(`http://localhost:3000/invoices/1`)
+    fetch(`http://localhost:3000/invoices/${id}`)
     .then(response => response.json())
     .then(data => {
       setPrintInvoicePDF(data[0])

@@ -108,7 +108,7 @@ function handleUpdateClient(updatedClient) {
         <Route path="/signup">
             <SignUp setCurrentUser={setCurrentUser} />
           </Route>
-          <Route exact path="/wholepdf">
+          <Route exact path="/wholepdf/:id">
          <WholePdf setCurrentUser={setCurrentUser} currentUser={currentUser}/>
           </Route>
           <Route exact path="/pdf">
