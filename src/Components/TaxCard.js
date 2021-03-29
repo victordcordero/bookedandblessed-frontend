@@ -7,7 +7,7 @@ function TaxCard({tax}) {
         <div>
             <ul>
                 <li>
-                <h1>Job Number: {tax.job_number} Tax Amount:{tax.amount}</h1> 
+                <h1>Job Number: {tax.job_number} Tax Amount: {tax.amount} dollars</h1> 
                 </li>
                 </ul>
         </div>
