@@ -13,7 +13,7 @@ import {
 
 function InvoiceCard({setSingleInvoice, invoices, deleteInvoicefromArray, user,onUpdateClient, expense, setTax, tax}) {
 const [updatedClient, setUpdatedClient] = useState("")
-const [taxAmount, setTaxAmount] = useState([])
+
 
 let expenseList = expense.map((expense) => <li> Expenses: {expense.amount} dollars</li>)
 
@@ -26,23 +26,23 @@ let expenseTotal = expenseAdd.reduce(function(a, b) {
 
 
 // setTaxAmount(taxFromInvoice)
-function caclulateTax() {
-    let taxFromInvoice = (invoices.amount * .30)
+// function caclulateTax() {
+//     let taxFromInvoice = (invoices.amount * .30)
     
-    fetch(`http://localhost:3000/taxes`, {
-        method: "POST",
-        headers: {
-            "Content-Type" : 'application/json'
-        },
-        body: JSON.stringify({amount: taxFromInvoice, job_number: invoices.job_number, user_id: user.id})
-    })
-    .then(response => response.json())
-    .then(data => {
-        setTaxAmount([...taxAmount, data])
-        setTax([...tax, data])
-    })
+//     fetch(`http://localhost:3000/taxes`, {
+//         method: "POST",
+//         headers: {
+//             "Content-Type" : 'application/json'
+//         },
+//         body: JSON.stringify({amount: taxFromInvoice, job_number: invoices.job_number, user_id: user.id})
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         setTaxAmount([...taxAmount, data])
+//         setTax([...tax, data])
+//     })
      
-}
+// }
 function handleNameFormSubmit(e) {
 e.preventDefault()
     fetch(`http://localhost:3000/invoices/${invoices.id}`, {

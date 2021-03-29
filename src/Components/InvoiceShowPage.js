@@ -30,6 +30,24 @@ function InvoiceShowPage({user}) {
       let expenseTotal = expenseAdd.reduce(function(a, b) {
         return a + b
     }, 0)
+
+    // function handleSubmit(e) {
+    //     e.preventDefault()
+    //     inputField.job_number = currentJob
+    //     console.log(inputField)
+    //     fetch(`http://localhost:3000/expenses`, {
+    //                 method: "POST",
+    //                 headers: {
+    //                     "Content-Type" : 'application/json'
+    //                 },
+    //                 body: JSON.stringify({expenses: inputField})
+    //             })
+    //             .then(response => response.json())
+    //             .then(data => {
+    //               addExpenseToInvoice(data, currentInvoice.id)
+    //               history.push('/invoicecontainer')
+    //             })
+    // }
     return (
         singleInvoice && singleInvoiceExpenses && <div>
          <h2>Invoice Template</h2>

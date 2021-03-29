@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import NumberFormat from 'react-number-format';
 import { useHistory } from "react-router-dom";
 
-function CreateExpense({addExpenseToInvoice, currentJob, lastJob, expenses, setExpenses, setCurrentInvoice, currentInvoice, setNewExpense, newExpense}) {
+function CreateExpense({addTaxtoInvoice, addExpenseToInvoice, currentJob, lastJob, expenses, setExpenses, setCurrentInvoice, currentInvoice, setNewExpense, newExpense}) {
     const history = useHistory()
 
  const [inputField, setinputField] = useState([{
@@ -42,6 +42,7 @@ const handleChangeInput = (id, event) => {
                 .then(response => response.json())
                 .then(data => {
                   addExpenseToInvoice(data, currentInvoice.id)
+                  addTaxtoInvoice(data, currentInvoice.id)
                   history.push('/invoicecontainer')
                 })
     }

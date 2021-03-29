@@ -35,7 +35,7 @@ function App() {
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
   const [currentUser, setCurrentUser] = useState(null);
-
+  const [taxAmount, setTaxAmount] = useState([])
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
     days_worked:"", 
@@ -52,8 +52,6 @@ function addExpenseToInvoice(newExpense, lastJob) {
     {return {...invoice, expenses: [ ...invoice.expenses, ...newExpense ]
   } }})
   setInvoices(newInvoices)
-  console.log(invoices)
-  console.log(newInvoices)
 }
 
 
@@ -100,6 +98,30 @@ function handleUpdateClient(updatedClient) {
   setInvoices(updatedClientArray);
   } 
   
+  function addTaxtoInvoice(expense, invoiceNumber) {
+    const foundInvoice = invoices.find( invoice => {
+      if ( invoice.id === invoiceNumber ) return invoice})
+let expenseAdd = expense.map((expense) => expense.amount)
+let expenseTotal = expenseAdd.reduce(function(a, b) {
+    return a + b
+}, 0)
+console.log(expenseAdd, "amount")
+console.log(expenseTotal, "total")
+console.log(foundInvoice)
+let taxFromInvoice = (foundInvoice.amount * .30)
+fetch(`http://localhost:3000/taxes`, {
+        method: "POST",
+        headers: {
+            "Content-Type" : 'application/json'
+        },
+        body: JSON.stringify({amount: taxFromInvoice, job_number: foundInvoice.job_number, user_id: user.id})
+    })
+    .then(response => response.json())
+    .then(data => {
+        setTax([...tax, data])
+        console.log(data)
+    })
+  }
   return (
     <> 
       <Header currentUser={currentUser}></Header> 
@@ -124,12 +146,12 @@ function handleUpdateClient(updatedClient) {
             <CreateInvoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData} setInvoices={setInvoices} invoices={invoices} setCurrentInvoice={setCurrentInvoice}></CreateInvoice>
           </Route>
           <Route path="/CreateExpense">
-            <CreateExpense currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
+            <CreateExpense addTaxtoInvoice={addTaxtoInvoice} currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
           </Route>
           <Route path="/InvoiceContainer">
             { user && expenses && <InvoiceContainer newExpense={newExpense} user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient} expenses={expenses} tax={tax} setTax={setTax}></InvoiceContainer> }
             </Route>
-            <Route path="/tax">
+            <Route path="/taxContainer">
             <Tax tax={tax}></Tax> 
             </Route>
             <Route path="/InvoiceShowPage/:id">
