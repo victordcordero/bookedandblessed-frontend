@@ -28,8 +28,7 @@ let expenseTotal = expenseAdd.reduce(function(a, b) {
 // setTaxAmount(taxFromInvoice)
 function caclulateTax() {
     let taxFromInvoice = (invoices.amount * .30)
-    console.log(user.id)
-    console.log(invoices.job_number)
+    
     fetch(`http://localhost:3000/taxes`, {
         method: "POST",
         headers: {

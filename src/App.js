@@ -19,6 +19,7 @@ import Login from "./Components/Login"
 import SignUp from "./Components/SignUp"
 import Profile from "./Components/Profile"
 import WholePdf from "./Components/WholePdf"
+import PDF from "./Components/Pdf"
 import jsPDF from 'jspdf'
 import Button from 'react-bootstrap/button'
 
@@ -107,8 +108,11 @@ function handleUpdateClient(updatedClient) {
         <Route path="/signup">
             <SignUp setCurrentUser={setCurrentUser} />
           </Route>
+          <Route exact path="/wholepdf">
+         <WholePdf setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+          </Route>
           <Route exact path="/pdf">
-         <WholePdf setCurrentUser={setCurrentUser}/>
+         <PDF/>
           </Route>
           <Route path="/login">
           <Login setCurrentUser={setCurrentUser} />

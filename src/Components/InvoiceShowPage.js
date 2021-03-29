@@ -44,7 +44,7 @@ function InvoiceShowPage({user}) {
             <p> Invoice Total: {singleInvoice.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
             <p>Grand Total: {singleInvoice.amount + expenseTotal} dollars</p>
-          
+            {/* <Link to={`/PDF/${invoices.id}`} >Click Me!</Link> */}
         </div>
     )
 }
