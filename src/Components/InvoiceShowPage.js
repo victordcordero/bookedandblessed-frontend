@@ -48,6 +48,7 @@ function InvoiceShowPage({user}) {
     //               history.push('/invoicecontainer')
     //             })
     // }
+    
     return (
         singleInvoice && singleInvoiceExpenses && <div>
          <h2>Invoice Template</h2>
@@ -62,6 +63,7 @@ function InvoiceShowPage({user}) {
             <p> Invoice Total: {singleInvoice.amount} dollars</p>
             <p>Expense Total: {expenseTotal} dollars</p>
             <p>Grand Total: {singleInvoice.amount + expenseTotal} dollars</p>
+            <Link className="btn btn-outline-secondary" to={`/Wholepdf/${singleInvoice.id}`} >Print</Link>
             {/* <Link to={`/PDF/${invoices.id}`} >Click Me!</Link> */}
         </div>
     )

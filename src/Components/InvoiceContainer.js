@@ -12,6 +12,7 @@ const newInvoices = invoices.map( invoice => {
     {return {...invoice, expenses: [ ...invoice.expenses, newExpense ]
   } }})
 
+ 
 
 function deleteInvoicefromArray(deleteInvoice) {
     let invoicesKeep = invoices.filter((invoice) => invoice.id !== deleteInvoice)

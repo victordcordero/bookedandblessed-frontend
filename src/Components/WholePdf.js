@@ -45,24 +45,17 @@ function WholePdf({currentUser}) {
       setPrintAmount(data[0].amount)
       setPrintJobNumber(data[0].job_number)
       setPrintExpensePDF(data[0].expenses)
-      // let tryingAgain = printExpensePDF.map((expense) => expense.amount)
       setTestingAgain(printExpensePDF.map((expense) => expense.amount))
-      
-      // setSingleExpensePDF((printExpensePDF.expenses.map((expense) => expense)))
-      // console.log(singleExpensePDf)
     })
   }, [])
 
-  console.log(testingAgain)
-
-  // let tryingAgain = printExpensePDF.map((expense) => expense.amount)
-  // console.log(tryingAgain)
   
   return (
     currentUser && testingAgain && <div>
       <PDFViewer>
-        <PdfDocument currentUser={currentUser} testing={testing} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
+      <PdfDocument currentUser={currentUser} testing={testing} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
       </PDFViewer>
+    
 
       <PDFDownloadLink document={<PdfDocument currentUser={currentUser} testing={testing} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>} fileName="pdftest.pdf">
         {({ blob, url, loading, error }) => (loading ? "loading" : "download")}
