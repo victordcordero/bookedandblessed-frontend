@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
       size: "A4",
   },
   view: {
-    size: "A4",
+    size: "",
       width: '100%',
       height: '100%',
       padding: 0,
@@ -28,23 +28,15 @@ const styles = StyleSheet.create({
       objectFit: '100%',
   },
 });
-function PDF({currentUser, testing, printRate, printDayWorked, printClient, printAmount, printJobNumber, singleExpensePDf }) {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('This will run after 1 second!')
-    }, 1000);
-    return () => clearTimeout(timer);
-  }, []);
+function PDF({ currentUser, printRate, printDayWorked, printClient, printAmount, printJobNumber, one}) {
+ 
 
   return (
     
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Text>Invoice</Text>
-          </View>
-          <View style={styles.section}>
-            <Text>Rate: {printJobNumber}</Text>
+            <Text>Invoice {printJobNumber}</Text>
           </View>
           <View style={styles.section}>
             <Text>Rate: {printRate}</Text>
@@ -55,6 +47,32 @@ function PDF({currentUser, testing, printRate, printDayWorked, printClient, prin
           <View style={styles.section}>
             <Text>Client: {printClient}</Text>
           </View>
+          {/* <View style={styles.section}>
+            <Text>Expenses: {expensesList}</Text>
+          </View> */}
+          <View style={styles.section}>
+            <Text>Total: {printAmount}</Text>
+          </View>
+        </Page>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text></Text>
+          </View>
+          <View style={styles.section}>
+            <Text>{one ? "Expense:" : null} {one ? one : null}</Text>
+          </View>
+          <View style={styles.section}>
+            <Text>{one ?  null : "Expense:"} {one ? null : one} </Text>
+          </View>
+          <View style={styles.section}>
+            <Text>{one ? "Expense:" : null} {one ? one : null}</Text>
+          </View>
+          <View style={styles.section}>
+            <Text>Client: {printClient}</Text>
+          </View>
+          {/* <View style={styles.section}>
+            <Text>Expenses: {expensesList}</Text>
+          </View> */}
           <View style={styles.section}>
             <Text>Total: {printAmount}</Text>
           </View>

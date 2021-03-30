@@ -67,8 +67,11 @@ function deleteInvoice() {
 
     return (
         expense && <div className="container-fluid padding">
+            <div class="row welcome text-center">
+		<div class="col-12">
   <div className="row padding">
     <div className="col-md-4">
+    <div className="col-12">
       <div className="card">
         <div className="card-body">
           <h4 className="card-title">Invoice Template: {invoices.job_number}</h4>
@@ -84,6 +87,10 @@ function deleteInvoice() {
           <Link className="btn btn-outline-secondary" to={`/InvoiceShowPage/${invoices.id}`} >View</Link>
         </div>
       </div>
+      </div>
+      </div>
+      </div>
+      <hr></hr>
     </div>
   </div>
 </div>

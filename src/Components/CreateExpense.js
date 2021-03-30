@@ -66,7 +66,7 @@ const handleChangeInput = (id, event) => {
           <form onSubmit={handleSubmit}>
             { inputField.map((inputField => (
             <div key={inputField.id}>
-                <input type="text" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}></input>
+                <input type="number" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}></input>
             </div>)))}
             <button type="submit">Submit</button>
           </form>

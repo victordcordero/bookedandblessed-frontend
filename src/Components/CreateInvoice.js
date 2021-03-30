@@ -38,9 +38,9 @@ function CreateInvoice({currentJob, lastJob, setInvoiceData, invoiceData, setInv
             <h1>Invoice</h1>
             <form onSubmit={handleFormSubmit} autoComplete="off"> 
             <label>Rate</label>
-            <input name="rate" value={invoiceData.rate} onChange={handleChange}></input>
+            <input  type="number" name="rate" value={invoiceData.rate} onChange={handleChange}></input>
             <label>Number of Days</label>
-            <input name="days_worked" value={invoiceData.days_worked} onChange={handleChange}></input>
+            <input type="number" name="days_worked" value={invoiceData.days_worked} onChange={handleChange}></input>
             <label>Client</label>
             <input name="client" value={invoiceData.client} onChange={handleChange}></input>
             <input type="submit" value="Start!"></input>

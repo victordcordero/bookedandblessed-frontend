@@ -36,6 +36,7 @@ function App() {
   const [lastJob, setLastJob] = useState([])
   const [currentUser, setCurrentUser] = useState(null);
   const [taxAmount, setTaxAmount] = useState([])
+  const [singleInvoice, setSingleInvoice] = useState(null)
   const [invoiceData, setInvoiceData] = useState({
     rate:"", 
     days_worked:"", 
@@ -46,14 +47,27 @@ function App() {
 })
 
 
-function addExpenseToInvoice(newExpense, lastJob) {
+function addExpenseToInvoice(newExpense, currentInvoiceNumber) {
   const newInvoices = invoices.map( invoice => {
-    if ( invoice.id !== lastJob ) return invoice
+    if ( invoice.id !== currentInvoiceNumber ) return invoice
     {return {...invoice, expenses: [ ...invoice.expenses, ...newExpense ]
   } }})
   setInvoices(newInvoices)
+
 }
 
+// function addExpenseToSingleInvoice(newExpense, currentInvoiceNumber) {
+//   let single = invoices.find( invoice => {
+//     if ( invoice.id === currentInvoiceNumber )
+//     {return {...invoice, expenses: [ ...invoice.expenses, ...newExpense ]
+//   } }})
+//   // const single = invoices.find( invoice => {
+//   //   if ( invoice.id === currentInvoiceNumber ) return {...invoice, expenses: [ ...invoice.expenses, ...newExpense ]
+//   //   } })
+//   console.log(newExpense)
+//   console.log(single)
+//   setSingleInvoice(single)
+// }
 
 useEffect(() => {
   fetch('http://localhost:3000/users/1')
@@ -105,9 +119,7 @@ let expenseAdd = expense.map((expense) => expense.amount)
 let expenseTotal = expenseAdd.reduce(function(a, b) {
     return a + b
 }, 0)
-console.log(expenseAdd, "amount")
-console.log(expenseTotal, "total")
-console.log(foundInvoice)
+
 let taxFromInvoice = (foundInvoice.amount * .30)
 fetch(`http://localhost:3000/taxes`, {
         method: "POST",
@@ -119,7 +131,7 @@ fetch(`http://localhost:3000/taxes`, {
     .then(response => response.json())
     .then(data => {
         setTax([...tax, data])
-        console.log(data)
+        
     })
   }
   return (
@@ -155,7 +167,7 @@ fetch(`http://localhost:3000/taxes`, {
             <Tax tax={tax}></Tax> 
             </Route>
             <Route path="/InvoiceShowPage/:id">
-          {user && <InvoiceShowPage user={user}/> }
+          {user && <InvoiceShowPage user={user} invoices={invoices} setInvoices={setInvoices} singleInvoice={singleInvoice} setSingleInvoice={setSingleInvoice}/> }
             </Route>
             <Route path="/profile">
             {currentUser && (
