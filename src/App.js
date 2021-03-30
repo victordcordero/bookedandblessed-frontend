@@ -22,6 +22,10 @@ import WholePdf from "./Components/WholePdf"
 import PDF from "./Components/Pdf"
 import jsPDF from 'jspdf'
 import Button from 'react-bootstrap/button'
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import Sidebar from "./Components/Sidarbar";
+import Home from "./pages";
 
 
 function App() {
@@ -136,8 +140,12 @@ fetch(`http://localhost:3000/taxes`, {
   }
   return (
     <> 
-      <Header currentUser={currentUser}></Header> 
+    <Router>
+    <Home></Home>
+    </Router>
+      {/* <Header currentUser={currentUser}></Header>  */}
       <main>
+      
         <Switch>
         <Route path="/signup">
             <SignUp setCurrentUser={setCurrentUser} />
@@ -185,6 +193,7 @@ fetch(`http://localhost:3000/taxes`, {
             )}
           </Route>
         </Switch>
+        {/* <Footer></Footer> */}
         </main>
         </>
   )
