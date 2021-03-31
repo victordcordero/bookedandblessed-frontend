@@ -60,16 +60,17 @@ function WholePdf({currentUser}) {
   }
   else {
     return (currentUser && <>
-      <PDFViewer>
+      <PDFViewer  height="860px" width="1920px"
+  marginleft="1000px">
       <PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
       </PDFViewer>
       {/* <PDFViewer>
       <PdfDocument/>
       </PDFViewer> */}
 
-      <button><PDFDownloadLink document={<PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>} fileName="pdftest.pdf">
+      {/* <button><PDFDownloadLink document={<PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>} fileName="pdftest.pdf">
        {({ blob, url, loading, error }) => (loading ? "loading" : "download")} 
-     </PDFDownloadLink></button>
+     </PDFDownloadLink></button> */}
     </>)
   }
 

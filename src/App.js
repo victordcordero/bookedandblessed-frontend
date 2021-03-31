@@ -22,7 +22,8 @@ import WholePdf from "./Components/WholePdf"
 import PDF from "./Components/Pdf"
 import jsPDF from 'jspdf'
 import Button from 'react-bootstrap/button'
-import Footer from "./Components/Navbar/Footer";
+import Footer from "./Components/Footer";
+// import Footer from "./Components/Navbar/Footer";
 
 
 
@@ -183,6 +184,7 @@ fetch(`http://localhost:3000/taxes`, {
               <Profile
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
+                currentJob={currentJob} user={user} lastJob={lastJob} setLastJob={setLastJob} setCurrentJob={setCurrentJob} jobs={jobs} setJobs={setJobs}
               />
             )}
           </Route>
@@ -194,10 +196,11 @@ fetch(`http://localhost:3000/taxes`, {
             )}
           </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
+        <Footer></Footer>
         </main>
         </>
   )
 }
-// "react-app/jest"
+
 export default App;

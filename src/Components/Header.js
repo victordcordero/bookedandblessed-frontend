@@ -36,12 +36,12 @@ const [button, setButton] = useState(true)
           <li className="nav-item">
             <a className="nav-link" href="/TaxContainer">Tax</a>
           </li>
-          <li className="nav-item">
+          {currentUser ? <li className="nav-item">
             <a className="nav-link" href="/SignUp">SignUp</a>
-          </li>
-          <li className="nav-item">
+          </li> : null }
+          {currentUser ? <li className="nav-item">
             <a className="nav-link" href="/Login">Login</a>
-          </li>
+          </li> : null }
         </ul>
       </div>
     </div>

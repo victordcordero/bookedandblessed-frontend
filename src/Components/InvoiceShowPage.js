@@ -114,47 +114,60 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
         setInputFieldShow(values)
     }
     return (
-        invoiceData && <div className="container-fluid padding">
-        <div class="row welcome text-center">
-    <div class="col-12">
-<div className="row padding">
-<div className="col-md-4">
-<div className="col-12">
-  <div className="card">
-    <div className="card-body">
-    <h4 className="card-title">Invoice {invoiceData.job_number}</h4>
-            <p>From: {user.name}</p>
-            <p>Email: {user.email}</p>
-           <p>Job Number: {invoiceData.job_number}</p>
-            <p>Client: {invoiceData.client}</p> 
-            <p>Days Worked: {invoiceData.days_worked}</p>
-            <p>Rate: {invoiceData.rate} dollars</p>
-            <p><ul>{singleInvoiceExpensesAmount}</ul></p>
-            <p> Invoice Total: {invoiceData.amount} dollars</p>
-            <p>Expense Total: {expenseTotal} dollars</p>
-            <p>Grand Total: {invoiceData.amount + expenseTotal} dollars</p>
-            <Link className="btn btn-outline-secondary" to={`/Wholepdf/${invoiceData.id}`} >Print</Link>
-            <button className="btn btn-outline-secondary" onClick={() => setShowExpenses(!showExpenses)}>{showExpenses ?  "how" : "Add Expenses"}</button>
-            <div>
-            <h1>Expense</h1>
-          <form onSubmit={handleSubmit}>
-            { inputFieldShow.map((inputFieldShow => (
-            <div key={inputFieldShow.id}>
-                <input type="number"  name="amount" value={inputFieldShow.amount} onChange={event => handleChangeInput(inputFieldShow.id, event)}></input>
-            </div>)))}
-            <button type="submit">Submit</button>
-          </form>
-            <button onClick={handleAddField}>Add Field</button>
-            <button onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
+        invoiceData && 
+        <div class="container">
+  <div class="row">
+  <div class="col">
+        <div className="container-fluid padding">
+                <div className="row padding">
+                  <div className="container-fluid padding">
+       <div class="row welcome text-center">
+         <div class="col-12">
+       <div className="row padding">
+       <div className="col-md-4">
+       <div className="col-12">
+       <div className="card">
+         <div className="card-body">
+         <h4 className="card-title">Invoice {invoiceData.job_number}</h4>
+           <p>From: {user.name}</p>
+           <p>Email: {user.email}</p>
+          <p>Job Number: {invoiceData.job_number}</p>
+           <p>Client: {invoiceData.client}</p> 
+           <p>Days Worked: {invoiceData.days_worked}</p>
+           <p>Rate: {invoiceData.rate} dollars</p>
+           <p><ul>{singleInvoiceExpensesAmount}</ul></p>
+           <p> Invoice Total: {invoiceData.amount} dollars</p>
+           <p>Expense Total: {expenseTotal} dollars</p>
+           <p>Grand Total: {invoiceData.amount + expenseTotal} dollars</p>
+           <Link className="btn btn-outline-secondary" to={`/Wholepdf/${invoiceData.id}`} >Print</Link>
+           {/* <button className="btn btn-outline-secondary" onClick={() => setShowExpenses(!showExpenses)}>{showExpenses ?  "how" : "Add Expenses"}</button> */}
+           </div>
+           </div>
+           </div>
+           </div>
+           <div class="col">
+           <div>
+           <h1>Expense</h1>
+         <form onSubmit={handleSubmit}>
+           { inputFieldShow.map((inputFieldShow => ( 
+       <div key={inputFieldShow.id}>
+               <input type="number"  name="amount" value={inputFieldShow.amount} onChange={event => handleChangeInput(inputFieldShow.id, event)}></input>
+           </div>)))}
+           <button type="submit">Submit</button>
+         </form> 
+       <button onClick={handleAddField}>Add Field</button>
+        <button onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
+       </div> 
+        </div> 
+        </div> 
+        </div> 
+        </div> 
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
+        </div> </div> 
+        </div> 
+        </div> 
+        </div> 
+        
     )
 }
 

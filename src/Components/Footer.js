@@ -5,7 +5,7 @@ function Footer() {
         <div className="container-fluid padding">
         <div className="row text-center">
           <div className="col-md-4">
-            {/* <img src="img/w3newbie.png" /> */}
+            <img src="img/w3newbie.png" />
             <hr className="light" />
             <p>555-555-5555</p>
             <p>email@myemail.com</p>
@@ -35,6 +35,7 @@ function Footer() {
           </div>
         </div>
       </div>
+      
       
     )
 }

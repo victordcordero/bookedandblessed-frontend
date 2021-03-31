@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
       size: "A4",
   },
   view: {
-    size: "",
+    size: "A4",
       width: '100%',
       height: '100%',
       padding: 0,
@@ -34,38 +34,23 @@ function PDF({ currentUser, printRate, printDayWorked, printClient, printAmount,
   return (
     
       <Document>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
+        <Page size="A4" >
+          <View >
             <Text>Invoice {printJobNumber}</Text>
           </View>
-          <View style={styles.section}>
+          <View >
             <Text>Rate: {printRate}</Text>
           </View>
-          <View style={styles.section}>
+          <View >
             <Text>Days Worked: {printDayWorked}</Text>
           </View>
-          <View style={styles.section}>
+          <View >
             <Text>Client: {printClient}</Text>
           </View>
-          {/* <View style={styles.section}>
+          {/* <View >
             <Text>Expenses: {expensesList}</Text>
           </View> */}
-          <View style={styles.section}>
-            <Text>Total: {printAmount}</Text>
-          </View>
-        </Page>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
-            <Text></Text>
-          </View>
-       
-          <View style={styles.section}>
-            <Text>Client: {printClient}</Text>
-          </View>
-          {/* <View style={styles.section}>
-            <Text>Expenses: {expensesList}</Text>
-          </View> */}
-          <View style={styles.section}>
+          <View >
             <Text>Total: {printAmount}</Text>
           </View>
         </Page>
