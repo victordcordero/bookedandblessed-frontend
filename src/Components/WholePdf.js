@@ -34,7 +34,7 @@ function WholePdf({currentUser}) {
   const [printAmount, setPrintAmount] = useState("")
   const [printJobNumber, setPrintJobNumber] = useState("")
   const [isLoading, setIsLoading] = useState(true)
-  const [one, setOne] = useState(0)
+  // const [one, setOne] = useState(0)
   useEffect(() => {
     console.log(id, "id")
     fetch(`http://localhost:3000/invoices/${id}`)
@@ -50,27 +50,27 @@ function WholePdf({currentUser}) {
       setPrintExpensePDF(data[0].expenses)
       setTestingAgain(printExpensePDF.map((expense) => expense.amount))
       setIsLoading(!isLoading)
-      setOne(data[0].expenses[0].amount)
+    
     })
   }, [])
   let expensesList = printExpensePDF.map((expense) => <ul><li>{expense.amount}</li></ul>)
-  console.log(one)
+  
   if (isLoading) {
     return <p>"Working"</p>
   }
   else {
-    return (currentUser && <div>
+    return (currentUser && <>
       <PDFViewer>
-      <PdfDocument one={one} expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
+      <PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
       </PDFViewer>
       {/* <PDFViewer>
       <PdfDocument/>
       </PDFViewer> */}
 
-      <button><PDFDownloadLink document={<PdfDocument one={one} expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>} fileName="pdftest.pdf">
+      <button><PDFDownloadLink document={<PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>} fileName="pdftest.pdf">
        {({ blob, url, loading, error }) => (loading ? "loading" : "download")} 
      </PDFDownloadLink></button>
-    </div>)
+    </>)
   }
 
   // return (

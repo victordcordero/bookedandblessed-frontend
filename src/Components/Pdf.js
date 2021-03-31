@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
       objectFit: '100%',
   },
 });
-function PDF({ currentUser, printRate, printDayWorked, printClient, printAmount, printJobNumber, one}) {
+function PDF({ currentUser, printRate, printDayWorked, printClient, printAmount, printJobNumber}) {
  
 
   return (
@@ -58,15 +58,7 @@ function PDF({ currentUser, printRate, printDayWorked, printClient, printAmount,
           <View style={styles.section}>
             <Text></Text>
           </View>
-          <View style={styles.section}>
-            <Text>{one ? "Expense:" : null} {one ? one : null}</Text>
-          </View>
-          <View style={styles.section}>
-            <Text>{one ?  null : "Expense:"} {one ? null : one} </Text>
-          </View>
-          <View style={styles.section}>
-            <Text>{one ? "Expense:" : null} {one ? one : null}</Text>
-          </View>
+       
           <View style={styles.section}>
             <Text>Client: {printClient}</Text>
           </View>

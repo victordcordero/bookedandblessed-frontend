@@ -22,10 +22,9 @@ import WholePdf from "./Components/WholePdf"
 import PDF from "./Components/Pdf"
 import jsPDF from 'jspdf'
 import Button from 'react-bootstrap/button'
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
-import Sidebar from "./Components/Sidarbar";
-import Home from "./pages";
+import Footer from "./Components/Navbar/Footer";
+
+
 
 
 function App() {
@@ -140,11 +139,11 @@ fetch(`http://localhost:3000/taxes`, {
   }
   return (
     <> 
-    <Router>
-    <Home></Home>
-    </Router>
+
       {/* <Header currentUser={currentUser}></Header>  */}
+      
       <main>
+      <Header currentUser={currentUser}></Header> 
       
         <Switch>
         <Route path="/signup">
@@ -168,6 +167,8 @@ fetch(`http://localhost:3000/taxes`, {
           <Route path="/CreateExpense">
             <CreateExpense addTaxtoInvoice={addTaxtoInvoice} currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
           </Route>
+
+         
           <Route path="/InvoiceContainer">
             { user && expenses && <InvoiceContainer newExpense={newExpense} user={user} invoices={invoices} setInvoices={setInvoices} onUpdateClient={handleUpdateClient} expenses={expenses} tax={tax} setTax={setTax}></InvoiceContainer> }
             </Route>
@@ -193,7 +194,7 @@ fetch(`http://localhost:3000/taxes`, {
             )}
           </Route>
         </Switch>
-        {/* <Footer></Footer> */}
+        <Footer />
         </main>
         </>
   )

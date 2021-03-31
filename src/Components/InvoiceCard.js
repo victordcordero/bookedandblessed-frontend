@@ -62,16 +62,13 @@ function deleteInvoice() {
     fetch(`http://localhost:3000/invoices/${invoices.id}`, {
         method: "DELETE" })
         let deleteInvoice = invoices.id
-        deleteInvoicefromArray(deleteInvoice)
+        deleteInvoicefromArray(deleteInvoice, invoices)
+
 }
 
     return (
-        expense && <div className="container-fluid padding">
-            <div class="row welcome text-center">
-		<div class="col-12">
-  <div className="row padding">
-    <div className="col-md-4">
-    <div className="col-12">
+    expense &&
+    <div className="col-md-3">
       <div className="card">
         <div className="card-body">
           <h4 className="card-title">Invoice Template: {invoices.job_number}</h4>
@@ -86,14 +83,10 @@ function deleteInvoice() {
           <button className="btn btn-outline-secondary" onClick={deleteInvoice}>Delete</button>
           <Link className="btn btn-outline-secondary" to={`/InvoiceShowPage/${invoices.id}`} >View</Link>
         </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      <hr></hr>
+
+        </div>
+    
     </div>
-  </div>
-</div>
 
     )
 }
