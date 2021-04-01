@@ -119,8 +119,7 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
         invoiceData && 
         <div className="container-fluid padding">
         <div className="row padding">
-          {/* co 1 */}
-          
+
           <div className="col-lg-6">
            
           <div class="container">
@@ -129,7 +128,7 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
        <div class="row welcome text-center">
          <div class="col-12">
        <div className="row padding">
-       <div className="col-md-4">
+       <div className="col-md-6">
        <div className="col-12">
        <div className="card">
          <div className="card-body">
@@ -164,23 +163,58 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
            </div>
           </div>
           {/* column 2 */}
-          <div className="col-lg-6">
-            <div>
-          <h1>Expense</h1>
-<form onSubmit={handleSubmit}>
-  { inputFieldShow.map((inputFieldShow => (
-  <div key={inputFieldShow.id}>
-      <input type="number" name="amount" value={inputFieldShow.amount} onChange={event => handleChangeInput(inputFieldShow.id, event)}></input>
-  </div>)))}
-  <button type="submit">Submit</button>
-</form>
-  <button onClick={handleAddField}>Add Field</button>
-  <button onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
-</div>
-{/* </div> */}
-</div>
+  
 
+          <form >
+        
+        <div className="container-fluid padding" >
+        
+   <div className="d-flex justify-content-center">
+        <div className="col-md-3" margin-left="1000px">
+       <div className="card" margin-left="1000px">
+         <div className="card-body" margin-left="1000px">
+           
+       <div class="form-outline mb-4">
+         <input type="email" id="form1Example1" class="form-control" />
+         <label class="form-label" for="form1Example1">Email address</label>
+       </div>
+     
       
+       <div class="form-outline mb-4">
+         <input type="password" id="form1Example2" class="form-control" />
+         <label class="form-label" for="form1Example2">Password</label>
+       </div>
+     
+       
+       <div class="row mb-4">
+         <div class="col d-flex justify-content-center">
+         
+           <div class="form-check">
+             <input
+               class="form-check-input"
+               type="checkbox"
+               value=""
+               id="form1Example3"
+               checked
+             />
+             <label class="form-check-label" for="form1Example3"> Remember me </label>
+           </div>
+         </div>
+     
+         <div class="col">
+           
+           <a href="#!">Forgot password?</a>
+         </div>
+       </div>
+     
+      
+       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+       </div>
+       </div>
+       </div>
+       </div>
+       </div>
+     </form>
 
           </div>
       
