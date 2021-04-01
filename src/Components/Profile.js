@@ -62,7 +62,6 @@ function Profile({currentUser, currentJob, user, lastJob, setCurrentJob, setLast
           <span className="carousel-control-next-icon" aria-hidden="true" />
           <span className="sr-only">Next</span>
         </a>
-        <Login />
       </div>
       
     )

@@ -1,6 +1,6 @@
 import React, {useEffect, useState, PureComponent} from "react"
 import { useHistory } from "react-router-dom";
-
+import '../App.css';
 function Login({ setCurrentUser }) {
     const [formData, setFormData] = useState({
       username: "",
@@ -48,33 +48,62 @@ function Login({ setCurrentUser }) {
     }
   
     return (
-      <div>
-        <form onSubmit={handleSubmit} autoComplete="off">
-          <h1>Login</h1>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-  
-          {errors.map((error) => (
-            <p key={error} style={{ color: "red" }}>
-              {error}
-            </p>
-          ))}
-          <input type="submit" value="Login" />
-        </form>
+      <form>
+       <div className="container-fluid padding">
+       <div class="row">
+  <div class="col">
+    
+       <div className="col-md-3" margin-left="1000px">
+      <div className="card" margin-left="1000px">
+        <div className="card-body" margin-left="1000px">
+          
+      <div class="form-outline mb-4">
+        <input type="email" id="form1Example1" class="form-control" />
+        <label class="form-label" for="form1Example1">Email address</label>
       </div>
+    
+     
+      <div class="form-outline mb-4">
+        <input type="password" id="form1Example2" class="form-control" />
+        <label class="form-label" for="form1Example2">Password</label>
+      </div>
+    
+      
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+        
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="form1Example3"
+              checked
+            />
+            <label class="form-check-label" for="form1Example3"> Remember me </label>
+          </div>
+        </div>
+    
+        <div class="col">
+          
+          <a href="#!">Forgot password?</a>
+        </div>
+      </div>
+    
+     
+      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </form>
+      
+ 
+
     );
   }
 
 export default Login
+ 

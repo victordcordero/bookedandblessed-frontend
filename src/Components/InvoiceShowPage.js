@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import '../App.css';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -115,6 +117,7 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
     }
     return (
         invoiceData && 
+        <>
         <div class="container">
   <div class="row">
   <div class="col">
@@ -145,29 +148,17 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
            </div>
            </div>
            </div>
-           <div class="col">
-           <div>
-           <h1>Expense</h1>
-         <form onSubmit={handleSubmit}>
-           { inputFieldShow.map((inputFieldShow => ( 
-       <div key={inputFieldShow.id}>
-               <input type="number"  name="amount" value={inputFieldShow.amount} onChange={event => handleChangeInput(inputFieldShow.id, event)}></input>
-           </div>)))}
-           <button type="submit">Submit</button>
-         </form> 
-       <button onClick={handleAddField}>Add Field</button>
-        <button onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
-       </div> 
-        </div> 
-        </div> 
-        </div> 
-        </div> 
-        </div>
-        </div> </div> 
-        </div> 
-        </div> 
-        </div> 
-        
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+        </>
+
     )
 }
 
