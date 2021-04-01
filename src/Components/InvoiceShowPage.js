@@ -135,6 +135,7 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
     <div class="col">
        <div className="card">
          <div className="card-body">
+           <div>
             <h4 className="card-title">Invoice {invoiceData.job_number}</h4>
             <p>From: {user.name}</p>
             <p>Email: {user.email}</p>
@@ -149,43 +150,31 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
             <Link className="btn btn-outline-secondary" to={`/Wholepdf/${invoiceData.id}`} >Print</Link>
           </div>
         </div>
+        </div>
       </div>
         <div class="col">
-          <form >
+          <form onSubmit={handleSubmit}>
             <div className="container-fluid padding" >
               <div className="d-flex justify-content-center">
                 <div className="col-md-12" margin-left="1000px">
                   <div className="card" margin-left="1000px">
                     <div className="card-body" margin-left="1000px"> 
                       <div class="form-outline mb-4">
-                        <input type="email" id="form1Example1" class="form-control" />
-                        <label class="form-label" for="form1Example1">Email address</label>
+                        { inputFieldShow.map((inputField => (
+                         <div key={inputFieldShow.id}>
+                          <input type="number" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}  id="form1Example1" class="form-control"></input>
+                          <label class="form-label" for="form1Example1">Expense</label>
+                         </div>)))}
                       </div> 
-                      <div class="form-outline mb-4">
-                        <input type="password" id="form1Example2" class="form-control" />
-                        <label class="form-label" for="form1Example2">Password</label>
-                      </div>  
-                      <div class="row mb-4">
-                        <div class="col d-flex justify-content-center">
-                          <div class="form-check">
-                            <input
-                              class="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id="form1Example3"
-                              checked
-                            />
-                            <label class="form-check-label" for="form1Example3"> Remember me </label>
-                          </div>
-                       </div>
-                      </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
                   </div>
                 </div>
               </div>
             </div>
           </form>
+          <button class="btn btn-primary btn-block" onClick={handleAddField}>Add Field</button>
+          <button class="btn btn-primary btn-block" onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
         </div>
       </div>
       </div>
