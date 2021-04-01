@@ -151,7 +151,7 @@ fetch(`http://localhost:3000/taxes`, {
             <SignUp setCurrentUser={setCurrentUser} />
           </Route>
           <Route exact path="/wholepdf/:id">
-         <WholePdf setCurrentUser={setCurrentUser} currentUser={currentUser}/>
+         { user && <WholePdf setCurrentUser={setCurrentUser} currentUser={currentUser} user={user}/>}
           </Route>
           <Route exact path="/pdf">
          <PDF/>

@@ -21,7 +21,7 @@ import PdfDocument from './Pdf'
 // Create styles
 
 // Create Document Component
-function WholePdf({currentUser}) {
+function WholePdf({currentUser, user}) {
   const {id} = useParams();
   const [printInvoicePDF, setPrintInvoicePDF] = useState(null)
   const [printExpensePDF, setPrintExpensePDF] = useState([])
@@ -34,9 +34,18 @@ function WholePdf({currentUser}) {
   const [printAmount, setPrintAmount] = useState("")
   const [printJobNumber, setPrintJobNumber] = useState("")
   const [isLoading, setIsLoading] = useState(true)
-  // const [one, setOne] = useState(0)
+  const [one, setOne] = useState(false)
+  const [name, setName] = useState("")
+  const [address, setAddress] = useState("")
+  const [social, setsocial] = useState("")
+  const [email, setEmail] = useState("")
+  const [bank, setBank] = useState("")
+  const [route, setRoute] = useState("")
+  const [checking, setChecking] = useState("")
+  // const [email, setEmail] = useState(null)
   useEffect(() => {
     console.log(id, "id")
+    // console.log(currentUser)
     fetch(`http://localhost:3000/invoices/${id}`)
     .then(response => response.json())
     .then(data => {
@@ -48,13 +57,34 @@ function WholePdf({currentUser}) {
       setPrintAmount(data[0].amount)
       setPrintJobNumber(data[0].job_number)
       setPrintExpensePDF(data[0].expenses)
-      setTestingAgain(printExpensePDF.map((expense) => expense.amount))
+      setTestingAgain(printExpensePDF.map((expense) => expense))
+      setName(user.name)
+      setAddress(user.address)
+      setsocial(user.social_security)
+      setEmail(user.email)
+      setBank(user.bank)
+      setRoute(user.routing)
+      setChecking(user.account)
+      console.log(user.account)
+      console.log(user)
       setIsLoading(!isLoading)
     
     })
   }, [])
-  let expensesList = printExpensePDF.map((expense) => <ul><li>{expense.amount}</li></ul>)
-  
+
+let expensesList
+let expenseTotal
+let expenseAndRate
+  if (user){
+   expensesList = printExpensePDF.map((expense) => expense.amount)
+   expenseTotal = expensesList.reduce(function(a, b) {
+      return a + b
+  }, 0)
+  expenseAndRate = expenseTotal + printAmount
+  } 
+
+
+  console.log(expenseTotal)
   if (isLoading) {
     return <p>"Working"</p>
   }
@@ -62,7 +92,7 @@ function WholePdf({currentUser}) {
     return (currentUser && <>
       <PDFViewer  height="860px" width="1920px"
   marginleft="1000px">
-      <PdfDocument expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
+      <PdfDocument name={name} email={email} expenseAndRate={expenseAndRate} expenseTotal={expenseTotal} address={address} bank={bank} checking={checking} route={route} social={social}expensesList={expensesList} currentUser={currentUser} printRate={printRate} printDayWorked={printDayWorked} printClient={printClient} printAmount={printAmount} printJobNumber={printJobNumber}/>
       </PDFViewer>
       {/* <PDFViewer>
       <PdfDocument/>

@@ -120,12 +120,10 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
         <div className="container-fluid padding">
         <div className="row padding">
           {/* co 1 */}
+          
           <div className="col-lg-6">
            
           <div class="container">
-   
-        {/* <div className="container-fluid padding"> */}
-        {/* <div class="container-fluid"></div> */}
                 <div className="row padding">
                   <div className="container-fluid padding">
        <div class="row welcome text-center">
