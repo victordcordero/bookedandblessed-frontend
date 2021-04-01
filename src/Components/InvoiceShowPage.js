@@ -117,11 +117,15 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
     }
     return (
         invoiceData && 
-        <>
-        <div class="container">
-  <div class="row">
-  <div class="col">
         <div className="container-fluid padding">
+        <div className="row padding">
+          {/* co 1 */}
+          <div className="col-lg-6">
+           
+          <div class="container">
+   
+        {/* <div className="container-fluid padding"> */}
+        {/* <div class="container-fluid"></div> */}
                 <div className="row padding">
                   <div className="container-fluid padding">
        <div class="row welcome text-center">
@@ -150,14 +154,40 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
            </div>
            </div>
            </div>
+           
            </div>
+           
            </div>
+           
            </div>
+           
            </div>
+           
            </div>
-           </div>
-           </div>
-        </>
+          </div>
+          {/* column 2 */}
+          <div className="col-lg-6">
+            <div>
+          <h1>Expense</h1>
+<form onSubmit={handleSubmit}>
+  { inputFieldShow.map((inputFieldShow => (
+  <div key={inputFieldShow.id}>
+      <input type="number" name="amount" value={inputFieldShow.amount} onChange={event => handleChangeInput(inputFieldShow.id, event)}></input>
+  </div>)))}
+  <button type="submit">Submit</button>
+</form>
+  <button onClick={handleAddField}>Add Field</button>
+  <button onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
+</div>
+{/* </div> */}
+</div>
+
+      
+
+          </div>
+      
+ 
+       
 
     )
 }

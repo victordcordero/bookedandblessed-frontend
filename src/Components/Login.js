@@ -48,11 +48,14 @@ function Login({ setCurrentUser }) {
     }
   
     return (
-      <form>
-       <div className="container-fluid padding">
+      <form >
+        
+       <div className="container-fluid padding" >
+       
        <div class="row">
+         
   <div class="col">
-    
+  <div className="d-flex justify-content-center">
        <div className="col-md-3" margin-left="1000px">
       <div className="card" margin-left="1000px">
         <div className="card-body" margin-left="1000px">
@@ -92,6 +95,7 @@ function Login({ setCurrentUser }) {
     
      
       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+      </div>
       </div>
       </div>
       </div>
