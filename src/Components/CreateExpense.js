@@ -61,20 +61,71 @@ const handleChangeInput = (id, event) => {
     }
 
     return (
-        <div>
-            <h1>Expense</h1>
-          <form onSubmit={handleSubmit}>
-            { inputField.map((inputField => (
+      <div>
+      <form onSubmit={handleSubmit} >
+           
+           <div className="container-fluid padding" >
+           
+           <div class="row">
+             
+           <div class="col">
+           <div className="d-flex justify-content-center">
+           <div className="col-md-3" margin-left="1000px">
+           <div className="card" margin-left="1000px">
+            <div className="card-body" margin-left="1000px">
+              
+           <div class="form-outline mb-4">
+           { inputField.map((inputField => (
             <div key={inputField.id}>
-                <input type="number" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}></input>
+                <input type="number" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}  id="form1Example1" class="form-control"></input>
+                <label class="form-label" for="form1Example1">Expense</label>
             </div>)))}
-            <button type="submit">Submit</button>
-          </form>
-            <button onClick={handleAddField}>Add Field</button>
-            <button onClick={() => handleRemoveField(inputField.id)}>Remove Field</button>
-        </div>
+            </div>
+           
+           <button type="submit" class="btn btn-primary btn-block">Submit</button>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </form>
+           <button onClick={handleAddField} class="btn btn-primary btn-block">Add Field</button>
+          <button onClick={() => handleRemoveField(inputField.id)} class="btn btn-primary btn-block">Remove Field</button>
+           </div>
+         
     )
 }
 
 export default CreateExpense
 
+{/* <form onSubmit={handleSubmit} >
+           
+           <div className="container-fluid padding" >
+           
+           <div class="row">
+             
+           <div class="col">
+           <div className="d-flex justify-content-center">
+           <div className="col-md-3" margin-left="1000px">
+           <div className="card" margin-left="1000px">
+            <div className="card-body" margin-left="1000px">
+              
+           <div class="form-outline mb-4">
+           { inputField.map((inputField => (
+            <div key={inputField.id}>
+                <input type="number" name="amount" value={inputField.amount} onChange={event => handleChangeInput(inputField.id, event)}  id="form1Example1" class="form-control"></input>
+                <label class="form-label" for="form1Example1">Expense</label>
+            </div>)))}
+            </div>
+           
+           <button type="submit" class="btn btn-primary btn-block">Submit</button>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </div>
+           </form> */}

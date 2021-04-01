@@ -117,110 +117,79 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
     }
     return (
         invoiceData && 
-        <div className="container-fluid padding">
-        <div className="row padding">
+      //   <div className="container-fluid padding">
+      //   <div className="row padding">
 
-          <div className="col-lg-6">
+      //     <div className="col-lg-6">
            
-          <div class="container">
-                <div className="row padding">
-                  <div className="container-fluid padding">
-       <div class="row welcome text-center">
-         <div class="col-12">
-       <div className="row padding">
-       <div className="col-md-6">
-       <div className="col-12">
+      //     <div class="container">
+      //           <div className="row padding">
+      //             <div className="container-fluid padding">
+      //  <div class="row welcome text-center">
+      //    <div class="col-12">
+      //  <div className="row padding">
+      //  <div className="col-md-6">
+      //  <div className="col-12">
+<div class="container">
+  <div class="row">
+    <div class="col">
        <div className="card">
          <div className="card-body">
-         <h4 className="card-title">Invoice {invoiceData.job_number}</h4>
-           <p>From: {user.name}</p>
-           <p>Email: {user.email}</p>
-          <p>Job Number: {invoiceData.job_number}</p>
-           <p>Client: {invoiceData.client}</p> 
-           <p>Days Worked: {invoiceData.days_worked}</p>
-           <p>Rate: {invoiceData.rate} dollars</p>
-           <p><ul>{singleInvoiceExpensesAmount}</ul></p>
-           <p> Invoice Total: {invoiceData.amount} dollars</p>
-           <p>Expense Total: {expenseTotal} dollars</p>
-           <p>Grand Total: {invoiceData.amount + expenseTotal} dollars</p>
-           <Link className="btn btn-outline-secondary" to={`/Wholepdf/${invoiceData.id}`} >Print</Link>
-           {/* <button className="btn btn-outline-secondary" onClick={() => setShowExpenses(!showExpenses)}>{showExpenses ?  "how" : "Add Expenses"}</button> */}
-           </div>
-           </div>
-           </div>
-           </div>
-           </div>
-           </div>
-           
-           </div>
-           
-           </div>
-           
-           </div>
-           
-           </div>
-           
-           </div>
+            <h4 className="card-title">Invoice {invoiceData.job_number}</h4>
+            <p>From: {user.name}</p>
+            <p>Email: {user.email}</p>
+            <p>Job Number: {invoiceData.job_number}</p>
+            <p>Client: {invoiceData.client}</p> 
+            <p>Days Worked: {invoiceData.days_worked}</p>
+            <p>Rate: {invoiceData.rate} dollars</p>
+            <p><ul>{singleInvoiceExpensesAmount}</ul></p>
+            <p> Invoice Total: {invoiceData.amount} dollars</p>
+            <p>Expense Total: {expenseTotal} dollars</p>
+            <p>Grand Total: {invoiceData.amount + expenseTotal} dollars</p>
+            <Link className="btn btn-outline-secondary" to={`/Wholepdf/${invoiceData.id}`} >Print</Link>
           </div>
-          {/* column 2 */}
-  
-
+        </div>
+      </div>
+        <div class="col">
           <form >
-        
-        <div className="container-fluid padding" >
-        
-   <div className="d-flex justify-content-center">
-        <div className="col-md-3" margin-left="1000px">
-       <div className="card" margin-left="1000px">
-         <div className="card-body" margin-left="1000px">
-           
-       <div class="form-outline mb-4">
-         <input type="email" id="form1Example1" class="form-control" />
-         <label class="form-label" for="form1Example1">Email address</label>
-       </div>
+            <div className="container-fluid padding" >
+              <div className="d-flex justify-content-center">
+                <div className="col-md-12" margin-left="1000px">
+                  <div className="card" margin-left="1000px">
+                    <div className="card-body" margin-left="1000px"> 
+                      <div class="form-outline mb-4">
+                        <input type="email" id="form1Example1" class="form-control" />
+                        <label class="form-label" for="form1Example1">Email address</label>
+                      </div> 
+                      <div class="form-outline mb-4">
+                        <input type="password" id="form1Example2" class="form-control" />
+                        <label class="form-label" for="form1Example2">Password</label>
+                      </div>  
+                      <div class="row mb-4">
+                        <div class="col d-flex justify-content-center">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="form1Example3"
+                              checked
+                            />
+                            <label class="form-check-label" for="form1Example3"> Remember me </label>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
      
-      
-       <div class="form-outline mb-4">
-         <input type="password" id="form1Example2" class="form-control" />
-         <label class="form-label" for="form1Example2">Password</label>
-       </div>
-     
-       
-       <div class="row mb-4">
-         <div class="col d-flex justify-content-center">
-         
-           <div class="form-check">
-             <input
-               class="form-check-input"
-               type="checkbox"
-               value=""
-               id="form1Example3"
-               checked
-             />
-             <label class="form-check-label" for="form1Example3"> Remember me </label>
-           </div>
-         </div>
-     
-         <div class="col">
-           
-           <a href="#!">Forgot password?</a>
-         </div>
-       </div>
-     
-      
-       <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-       </div>
-       </div>
-       </div>
-       </div>
-       </div>
-     </form>
-
-          </div>
-      
- 
-       
-
     )
 }
 
