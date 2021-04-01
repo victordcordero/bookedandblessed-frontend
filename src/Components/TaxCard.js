@@ -5,11 +5,10 @@ function TaxCard({tax}) {
    
     return (
         <div>
-            <ul>
-                <li>
-                <h1>Job Number: {tax.job_number} Tax Amount: {tax.amount} dollars</h1> 
-                </li>
-                </ul>
+            <li className="list-group-item">Job Number: {tax.job_number} Tax Amount: {tax.amount} dollars</li>
+               
+                {/* <h1>Job Number: {tax.job_number} Tax Amount: {tax.amount} dollars</h1>  */}
+               
         </div>
     )
 }

@@ -65,9 +65,7 @@ const handleChangeInput = (id, event) => {
       <form onSubmit={handleSubmit} >
            
            <div className="container-fluid padding" >
-           
            <div class="row">
-             
            <div class="col">
            <div className="d-flex justify-content-center">
            <div className="col-md-3" margin-left="1000px">
@@ -91,8 +89,12 @@ const handleChangeInput = (id, event) => {
            </div>
            </div>
            </form>
-           <button onClick={handleAddField} class="btn btn-primary btn-block">Add Field</button>
-          <button onClick={() => handleRemoveField(inputField.id)} class="btn btn-primary btn-block">Remove Field</button>
+           {/* <div className="container"> */}
+           <div className="d-flex justify-content-center">
+           <button type="button" onClick={handleAddField} class="btn btn-primary">Add Field</button>
+          <button onClick={() => handleRemoveField(inputField.id)} class="btn btn-primary">Remove Field</button>
+          {/* </div> */}
+           </div>
            </div>
          
     )

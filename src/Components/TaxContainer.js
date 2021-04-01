@@ -13,10 +13,21 @@ let taxTotal = taxAmount.reduce(function(a, b) {
     return a + b
 }, 0)
     return (
-        <div>
-           {taxes}
-           <h1>Grand Total: {taxTotal} dollars</h1>
-        </div>
+        <div className="d-flex justify-content-center">
+        <div className="card" style={{width: '30rem'}}>
+  <div className="card-header">
+   Taxes 2020 - {taxTotal} dollars
+  </div>
+  <ul className="list-group list-group-flush">
+  {taxes}
+  </ul>
+</div>
+
+</div>
+        // <div>
+        //    {taxes}
+        //    <h1>Grand Total: {taxTotal} dollars</h1>
+        // </div>
     )
 }
 

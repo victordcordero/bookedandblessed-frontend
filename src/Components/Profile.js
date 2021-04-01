@@ -51,6 +51,7 @@ function Profile({currentUser, currentJob, user, lastJob, setCurrentJob, setLast
             <img className="d-block w-100" src="https://wallpaperaccess.com/full/656665.jpg" alt="Third slide" />
             <div className="carousel-caption d-none d-md-block">
               <h1>Booked&Blessed</h1>
+              <button className="button button1" onClick={createJobNumber} >Start a Job</button>
             </div>
           </div>
         </div>

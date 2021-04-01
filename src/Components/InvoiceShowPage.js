@@ -173,8 +173,10 @@ function InvoiceShowPage({user, invoice, invoices, setInvoices}) {
               </div>
             </div>
           </form>
-          <button class="btn btn-primary btn-block" onClick={handleAddField}>Add Field</button>
-          <button class="btn btn-primary btn-block" onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
+          <div className="d-flex justify-content-center">
+          <button class="btn btn-primary" onClick={handleAddField}>Add Field</button>
+          <button class="btn btn-primary" width="100px" onClick={() => handleRemoveField(inputFieldShow.id)}>Remove Field</button>
+        </div>
         </div>
       </div>
       </div>
