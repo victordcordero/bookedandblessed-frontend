@@ -69,7 +69,7 @@ function PDF({ address, email, expenseAndRate, expenseTotal, social, name, route
             <Text>Job Number: {printJobNumber}</Text>
           </View>
           <View class="bold_text" style={{ color: 'black', textAlign: 'left', padding: "5px", fontSize: "12"}}>
-            <Text>Client: {printJobNumber}</Text>
+            <Text>Client: {printClient}</Text>
           </View>
           <View style={{ color: 'white', textAlign: 'left', padding: "10px"}}>
             <Text></Text>

@@ -47,6 +47,10 @@ function Login({ setCurrentUser }) {
         // });
     }
   
+    function goHome() {
+      history.push("/profile")
+      console.log("hi")
+    }
     return (
       <form >
         
@@ -93,8 +97,8 @@ function Login({ setCurrentUser }) {
         </div>
       </div>
     
-     
-      <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+    
+      <button type="submit" onclick={goHome} class="btn btn-primary btn-block">Sign in</button>
       </div>
       </div>
       </div>
