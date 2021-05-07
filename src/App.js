@@ -35,6 +35,7 @@ function App() {
   const [expenses, setExpenses] = useState([])
   const [tax, setTax] = useState([])
   const [newExpense, setNewExpense] = useState([])
+  const [receipts, setReceipts] = useState({})
   const [currentJob, setCurrentJob] = useState(0)
   const [currentInvoice, setCurrentInvoice] = useState([])
   const [lastJob, setLastJob] = useState([])
@@ -166,7 +167,7 @@ fetch(`http://localhost:3000/taxes`, {
             <CreateInvoice currentJob={currentJob} lastJob={lastJob} invoiceData={invoiceData} setInvoiceData={setInvoiceData} setInvoices={setInvoices} invoices={invoices} setCurrentInvoice={setCurrentInvoice}></CreateInvoice>
           </Route>
           <Route path="/CreateExpense">
-            <CreateExpense addTaxtoInvoice={addTaxtoInvoice} currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
+            <CreateExpense receipts={receipts} setReceipts={setReceipts} addTaxtoInvoice={addTaxtoInvoice} currentJob={currentJob} lastJob={lastJob} setExpenses={setExpenses} expenses={expenses} currentInvoice={currentInvoice} setCurrentInvoice={setCurrentInvoice} newExpense={newExpense} setNewExpense={setNewExpense} addExpenseToInvoice={addExpenseToInvoice}></CreateExpense>
           </Route>
 
          
